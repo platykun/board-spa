@@ -35,7 +35,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    {src: '~plugins/vee-validate.js', ssr: true}
   ],
 
   /*
@@ -43,7 +44,9 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    //  not use
+    // '@nuxtjs/dotenv',
   ],
   /*
   ** Axios module configuration
@@ -70,5 +73,20 @@ module.exports = {
         })
       }
     }
+  },
+  script: [
+    { src: '~/plugins/js/helper/api.js' },
+    { src: '~/plugins/js/interface/CreateRoom.js' },
+    { src: '~/plugins/js/interface/Detail.js' },
+    { src: '~/plugins/js/interface/JoinRoom.js' },
+    { src: '~/plugins/js/interface/Login.js' },
+    { src: '~/plugins/js/interface/Place.js' },
+    { src: '~/plugins/js/interface/Result.js' },
+  ],
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:8090',
+    // API_URL: '"http://board-api.sanaudon.com"'
+    API_URL: 'http://localhost:8090'
   }
 }

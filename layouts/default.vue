@@ -1,106 +1,77 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          v-for="(item, i) in items"
-          :to="item.to"
-          :key="i"
-          router
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon" />
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title" />
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
+  <div>
     <v-toolbar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-toolbar-side-icon @click="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'" />
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"/>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
+      color="teal"
+      dark
+      clipped="true">
+      <v-toolbar-side-icon @click.stop="drawer = !drawer">
+        <v-icon>dashboard</v-icon>
+      </v-toolbar-side-icon>
+      <v-toolbar-title>Title</v-toolbar-title>
+      <v-spacer/>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn flat>Link One</v-btn>
+        <v-btn flat>Link Two</v-btn>
+        <v-btn flat>Link Three</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
     <v-navigation-drawer
-      :right="right"
-      v-model="rightDrawer"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
+      v-model="drawer"
+      absolute
+      temporary>
+      <v-list dense>
+        <template v-for="(item, index) in items">
+          <v-list-tile
+            v-if="item.action"
+            :key="item.title"
+            :to="item.action"
+            @click="item.action">
+            <!--v-list__tile v-list__tile--link v-list__tile--avatar theme--light-->
+            <v-list-tile-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider
+            v-else-if="item.divider"
+            :key="index"/>
+          <v-subheader
+            v-else-if="item.header"
+            :key="item.header"
+          >
+            {{ item.header }}
+          </v-subheader>
+        </template>
+
       </v-list>
     </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2017</span>
-    </v-footer>
-  </v-app>
+    <nuxt/>
+  </div>
 </template>
 
 <script>
   export default {
+    name: 'HelloWorld',
     data() {
       return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
+        msg: 'Welcome to Your Vue.js App',
+        drawer: null,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { header: '記録' },
+          { action: '/record/top', title: '記録トップ', icon: 'home' },
+          { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
+          { action: '/record/create', title: 'ルーム作成', icon: 'group' },
+          { action: '/record/join', title: 'ルーム参加', icon: 'group_add' },
+          { action: '/record/result', title: '結果入力', icon: 'note_add' },
+          { divider: true },
+          { header: 'Labels' },
+          { action: 'label', title: 'Family', icon: 'dashboard' },
+          { action: 'label', title: 'Friends', icon: 'dashboard' },
+          { action: 'label', title: 'Work', icon: 'dashboard' },
         ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
-      }
-    }
-  }
+      };
+    },
+  };
 </script>
