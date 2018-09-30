@@ -56,7 +56,7 @@ export default {
   methods: {
     checkin(val) {
       Place.checkIn(val);
-      this.$router.push({ path: './top' });
+      this.$router.push({ path: '/record' });
     },
   },
 };

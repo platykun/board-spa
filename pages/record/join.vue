@@ -64,7 +64,7 @@ export default {
   methods: {
     joinRoom(val) {
       JoinRoom.joinRoom(val);
-      this.$router.push({ path: './top' });
+      this.$router.push({ path: '/join' });
     },
   },
 };

@@ -82,11 +82,13 @@ module.exports = {
     { src: '~/plugins/js/interface/Login.js' },
     { src: '~/plugins/js/interface/Place.js' },
     { src: '~/plugins/js/interface/Result.js' },
+    { src: '~/plugins/js/interface/history/HistoryCheckin.js' },
+    { src: '~/plugins/js/interface/history/HistoryJoinRoom.js' },
+    { src: '~/plugins/js/interface/history/HistoryResult.js' },
   ],
 
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8090',
-    // API_URL: '"http://board-api.sanaudon.com"'
     API_URL: 'http://localhost:8090'
   }
 }

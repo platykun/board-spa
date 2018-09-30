@@ -2,7 +2,7 @@
   <div class="index">
     <h1>{{ msg }}</h1>
     hello
-    <v-btn to="./record/">記録する</v-btn>
+    <v-btn to="./record">記録する</v-btn>
   </div>
 </template>
 
