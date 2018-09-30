@@ -1,27 +1,28 @@
 <template>
   <div class="register">
+    registervue
     <router-view/>
-    <v-speed-dial 
-      v-model="fab" 
-      bottom 
-      floating 
-      fixed 
+    <v-speed-dial
+      v-model="fab"
+      bottom
+      floating
+      fixed
       right>
-      <v-btn 
-        slot="activator" 
-        v-model="fab" 
-        color="blue darken-2" 
-        dark 
+      <v-btn
+        slot="activator"
+        v-model="fab"
+        color="blue darken-2"
+        dark
         fab>
         <v-icon>menu</v-icon>
         <v-icon>close</v-icon>
       </v-btn>
-      <v-btn 
-        fab 
-        dark 
-        small 
-        color="green" 
-        to="/register/top">
+      <v-btn
+        fab
+        dark
+        small
+        color="green"
+        to="/register">
         <v-icon>home</v-icon>
       </v-btn>
     </v-speed-dial>

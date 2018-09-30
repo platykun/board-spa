@@ -1,5 +1,6 @@
 <template>
   <div class="record">
+    recordvue
     <router-view/>
     <v-speed-dial
       v-model="fab"
@@ -53,7 +54,7 @@
         dark
         small
         color="green"
-        to="/record/top">
+        to="/record">
         <v-icon>home</v-icon>
       </v-btn>
     </v-speed-dial>
