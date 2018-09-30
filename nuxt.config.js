@@ -89,6 +89,6 @@ module.exports = {
 
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8090',
-    API_URL: 'http://localhost:8090'
+    API_URL: process.env.BASE_URL || 'http://localhost:8090'
   }
 }
