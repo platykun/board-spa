@@ -59,7 +59,7 @@ export default {
           localStorage.authList = response.data.authList;
           localStorage.logined = true;
 
-          this.$router.push({ path: './top' });
+          this.$router.push({ path: '/top' });
         })
         .catch((error) => {
         // eslint-disable-next-line

@@ -36,7 +36,7 @@ export default {
         (response) => {
           // eslint-disable-next-line
           console.log(response);
-          this.$router.push({ path: '/result' });
+          this.$router.push({ path: '/record' });
         })
         .catch((error) => {
           // eslint-disable-next-line

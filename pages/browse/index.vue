@@ -55,10 +55,8 @@
             <v-list-tile-action>
               <v-list-tile-action-text>{{ joinRoom.joinDate }} </v-list-tile-action-text>
               <v-chip
-                close
-                color="teal"
                 text-color="white">
-                check out
+                作成者
               </v-chip>
             </v-list-tile-action>
           </v-list-tile>
@@ -71,6 +69,32 @@
     </v-card>
 
     <h3>結果履歴</h3>
+
+    <v-card>
+      <v-list two-line>
+        <template v-for="(result, index) in results">
+          <v-list-tile
+            :key="result.roomId"
+            avatar
+            ripple
+            @click="toggle(index)"
+          >
+            <v-list-tile-content>
+              <v-list-tile-sub-title class="text--primary"> ルームID : {{ result.roomId }} </v-list-tile-sub-title>
+              <v-list-tile-title> {{ result.rank }} {{ result.score }} </v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
+              <v-list-tile-action-text> TODO: ここに日付が入る </v-list-tile-action-text>
+            </v-list-tile-action>
+          </v-list-tile>
+          <v-divider
+            v-if="index + 1 < checkins.length"
+            :key="index"
+          />
+        </template>
+      </v-list>
+    </v-card>
+
     <p>{{ $data }}</p>
   </div>
 </template>
