@@ -1,29 +1,61 @@
 <template>
-  <div class="login">
-    <h1>{{ msg }}</h1>
+  <div class="login flex xs12 sm6 offset-sm3">
+    <h2>{{ msg }}</h2>
     <v-alert
       v-if="errorMsg"
       :value="true"
-      color="info"
+      color="red accent-2"
       icon="info"
     >{{ errorMsg }}</v-alert>
-    <div class="flex xs12 sm6 offset-sm3">
-      <v-text-field
-        v-validate="'required|max:10'"
-        v-model="userId"
-        :error-messages="errors"
-        name="userId"
-        label="ユーザID"/>
-      <v-text-field
-        v-validate="'required'"
-        v-model="password"
-        :error-messages="errors"
-        name="password"
-        label="パスワード"/>
-    </div>
-    <v-btn
-      color="error"
-      @click.stop.prevent="sendLogin">ログイン</v-btn>
+    <v-layout
+      row
+      wrap
+      my-2
+    >
+      <v-flex xs12>
+        <v-card
+          color="blue-grey darken-1"
+          class="white--text">
+          <v-card-title primary-title>
+            <div class="headline">Login</div>
+          </v-card-title>
+          <v-card-content>
+            <div class="mx-2">
+              <v-text-field
+                v-validate="'required|max:10'"
+                v-model="userId"
+                :error-messages="errors"
+                name="userId"
+                type="text"
+                label="ユーザID"
+                dark
+              />
+              <v-text-field
+                v-validate="'required'"
+                v-model="password"
+                :error-messages="errors"
+                name="password"
+                type="password"
+                label="パスワード"
+                dark
+              />
+            </div>
+          </v-card-content>
+          <v-card-actions>
+            <v-btn
+              class="deep-orange accent-3"
+              dark
+              @click.stop.prevent="sendLogin">ログイン</v-btn>
+            <v-spacer/>
+            <v-btn
+              flat
+              dark>
+              アカウントが無い方はこちら
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
@@ -35,6 +67,7 @@ export default {
     return {
       msg: 'Welcome to login page. you can enter admin/password',
       errorMsg: null,
+      errors: null,
       userId: '',
       password: '',
     };
@@ -64,9 +97,7 @@ export default {
           this.$router.push({ path: '/top' });
         })
         .catch((error) => {
-        // eslint-disable-next-line
-        console.log(error);
-          this.errorMsg = 'ログインに失敗しました.';
+          this.errorMsg = 'ログインに失敗しました. reason:' + error.message;
         });
     },
   },

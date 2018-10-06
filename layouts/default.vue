@@ -7,14 +7,20 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer">
         <v-icon>ballot</v-icon>
       </v-toolbar-side-icon>
-      <v-toolbar-title>BoardGameDiary</v-toolbar-title>
+      <v-toolbar-title>
+        BoardGameDiary
+      </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items>
-        <v-btn flat>
+        <v-btn
+          flat
+          to="/login">
           <v-icon>fa-user-plus</v-icon>
           <h3 class="hidden-md-and-down">新規登録</h3>
         </v-btn>
-        <v-btn flat>
+        <v-btn
+          flat
+          to="/login">
           <v-icon>fa-sign-in</v-icon>
           <h3 class="hidden-md-and-down">ログイン</h3>
         </v-btn>
@@ -52,7 +58,8 @@
       </v-list>
     </v-navigation-drawer>
     <nuxt/>
-    <v-footer>
+    <v-footer
+      fixed>
       <v-card
         class="flex"
         flat
@@ -83,6 +90,8 @@
         msg: 'Welcome to Your Vue.js App',
         drawer: null,
         items: [
+          { action: '/', title: 'ページトップ', icon: 'home' },
+          { divider: true },
           { header: '記録' },
           { action: '/record', title: '記録トップ', icon: 'home' },
           { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },

@@ -10,14 +10,16 @@
           justify-center
           class="white--text"
         >
-          <v-icon>ballot</v-icon>
+          <v-icon
+            dark
+            size="100px">ballot</v-icon>
           <h1 class="white--text mb-2 display-1 text-xs-center">Board Game Management</h1>
           <div class="subheading mb-3 text-xs-center">This is an application to record the board game you played</div>
           <v-btn
-            class="blue lighten-2 mt-5"
+            class="deep-orange accent-3 mt-5"
             dark
             large
-            href="/pre-made-themes"
+            to="/login"
           >
             Get Started
           </v-btn>
@@ -37,10 +39,7 @@
           sm4
           class="my-3">
           <div class="text-xs-center">
-            <h2 class="headline">The best way to start developing</h2>
-            <span class="subheading">
-              Cras facilisis mi vitae nunc
-            </span>
+            <h2 class="headline">Board Game Managementでできること</h2>
           </div>
         </v-flex>
         <v-flex xs12>
@@ -50,65 +49,23 @@
               wrap
               align-center>
               <v-flex
+                v-for="description in descriptions"
+                :key="description"
                 xs12
                 md4>
                 <v-card class="elevation-0 transparent">
                   <v-card-text class="text-xs-center">
                     <v-icon
                       x-large
-                      class="blue--text text--lighten-2">color_lens</v-icon>
+                      class="deep-orange--text text--accent-3">{{ description.icon }}</v-icon>
                   </v-card-text>
                   <v-card-title
                     primary-title
                     class="layout justify-center">
-                    <div class="headline text-xs-center">Material Design</div>
+                    <div class="headline text-xs-center">{{ description.title }}</div>
                   </v-card-title>
                   <v-card-text>
-                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
-                  </v-card-text>
-                </v-card>
-              </v-flex>
-              <v-flex
-                xs12
-                md4>
-                <v-card class="elevation-0 transparent">
-                  <v-card-text class="text-xs-center">
-                    <v-icon
-                      x-large
-                      class="blue--text text--lighten-2">flash_on</v-icon>
-                  </v-card-text>
-                  <v-card-title
-                    primary-title
-                    class="layout justify-center">
-                    <div class="headline">Fast development</div>
-                  </v-card-title>
-                  <v-card-text>
-                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
-                  </v-card-text>
-                </v-card>
-              </v-flex>
-              <v-flex
-                xs12
-                md4>
-                <v-card class="elevation-0 transparent">
-                  <v-card-text class="text-xs-center">
-                    <v-icon
-                      x-large
-                      class="blue--text text--lighten-2">build</v-icon>
-                  </v-card-text>
-                  <v-card-title
-                    primary-title
-                    class="layout justify-center">
-                    <div class="headline text-xs-center">Completely Open Sourced</div>
-                  </v-card-title>
-                  <v-card-text>
-                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                    {{ description.desc }}
                   </v-card-text>
                 </v-card>
               </v-flex>
@@ -126,8 +83,8 @@
           column
           align-center
           justify-center>
-          <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-          <em>Kick-start your application today</em>
+          <div class="headline white--text mb-3 text-xs-center">ここに気の利いたキャッチコピーが入る</div>
+          <em>ここにも気の利いたキャッチーなコメントが入る</em>
           <v-btn
             class="blue lighten-2 mt-5"
             dark
@@ -157,9 +114,7 @@
                 <div class="headline">Company info</div>
               </v-card-title>
               <v-card-text>
-                Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
+                カンパニーじゃないからこれの代わりの何かが入る
               </v-card-text>
             </v-card>
           </v-flex>
@@ -174,7 +129,7 @@
                 <div class="headline">Contact us</div>
               </v-card-title>
               <v-card-text>
-                Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
+                フッター情報と情報が重複してるので不要かもしれない
               </v-card-text>
               <v-list class="transparent">
                 <v-list-tile>
@@ -182,7 +137,7 @@
                     <v-icon class="blue--text text--lighten-2">phone</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>777-867-5309</v-list-tile-title>
+                    <v-list-tile-title>**********</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
@@ -198,7 +153,7 @@
                     <v-icon class="blue--text text--lighten-2">email</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
+                    <v-list-tile-title>a@a.a</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list>
@@ -218,6 +173,16 @@ export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  data() {
+    return {
+      descriptions: [
+        {icon: 'fa-pencil', title: '記録する', desc: '遊んだボードゲームを記録する事ができます。'},
+        {icon: 'fa-book', title: '閲覧する', desc: '様々なプレイヤーのプレイ記録を閲覧することができます。'},
+        {icon: 'fa-twitter', title: '共有する', desc: 'twitter等で情報を共有することができます。'},
+      ],
+    }
   }
 }
 </script>
+
