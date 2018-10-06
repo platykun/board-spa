@@ -21,7 +21,9 @@
         name="password"
         label="パスワード"/>
     </div>
-    <v-btn @click.stop.prevent="sendLogin">ログイン</v-btn>
+    <v-btn
+      color="error"
+      @click.stop.prevent="sendLogin">ログイン</v-btn>
   </div>
 </template>
 

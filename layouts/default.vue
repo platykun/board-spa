@@ -1,18 +1,23 @@
 <template>
   <div>
     <v-toolbar
-      color="teal"
       dark
+      color="blue-grey darken-1"
       clipped="true">
       <v-toolbar-side-icon @click.stop="drawer = !drawer">
-        <v-icon>dashboard</v-icon>
+        <v-icon>ballot</v-icon>
       </v-toolbar-side-icon>
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>BoardGameDiary</v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Link One</v-btn>
-        <v-btn flat>Link Two</v-btn>
-        <v-btn flat>Link Three</v-btn>
+      <v-toolbar-items>
+        <v-btn flat>
+          <v-icon>fa-user-plus</v-icon>
+          <h3 class="hidden-md-and-down">新規登録</h3>
+        </v-btn>
+        <v-btn flat>
+          <v-icon>fa-sign-in</v-icon>
+          <h3 class="hidden-md-and-down">ログイン</h3>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-navigation-drawer
@@ -44,16 +49,35 @@
             {{ item.header }}
           </v-subheader>
         </template>
-
       </v-list>
     </v-navigation-drawer>
     <nuxt/>
+    <v-footer>
+      <v-card
+        class="flex"
+        flat
+        tile
+        dark
+      >
+        <v-card-actions class="blue-grey darken-1 justify-center">
+          contact
+          <v-btn
+            v-for="icon in footerIcons"
+            :key="icon"
+            :href="icon.link"
+            class="mx-3"
+            icon
+          >
+            <v-icon> {{ icon.name }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-footer>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'HelloWorld',
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
@@ -77,6 +101,10 @@
           { action: 'label', title: 'Friends', icon: 'dashboard' },
           { action: 'label', title: 'Work', icon: 'dashboard' },
         ],
+        footerIcons: [
+          { name: 'fa-twitter-square', link: 'https://twitter.com/platykun'},
+          { name: 'fa-github-square', link: 'https://github.com/platykun'},
+        ]
       };
     },
   };

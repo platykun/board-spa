@@ -15,7 +15,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'},
     ]
   },
 
@@ -35,8 +36,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify',
-    {src: '~plugins/vee-validate.js', ssr: true}
+    {src: '~plugins/vee-validate.js', ssr: true},
+    '~plugins/vue-awesome.js',
   ],
 
   /*
@@ -45,6 +46,7 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
+    '@nuxtjs/vuetify',
     //  not use
     // '@nuxtjs/dotenv',
   ],
@@ -59,6 +61,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['vue-awesome'],
+    // vendor: [
+    //   '~plugins/vuetifyPlugin.js'
+    // ],
     /*
     ** You can extend webpack config here
     */
@@ -90,5 +96,14 @@ module.exports = {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8090',
     API_URL: process.env.BASE_URL || 'http://localhost:8090'
+  },
+  vuetify: {
+    iconfont: 'mdi',
+    theme: {
+      primary: '#3f51b5',
+      secondary: '#b0bec5',
+      accent: '#8c9eff',
+      error: '#b71c1c'
+    }
   }
 }
