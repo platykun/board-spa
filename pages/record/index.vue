@@ -1,12 +1,11 @@
 <template>
   <div class="record">
-    RecordTop
-    <div class="flex xs12 sm6 offset-sm3">
-      <h2>参加中ルーム情報</h2>
+    <div class="flex xs12 sm6 offset-sm3 mt-3">
+      <h2 class="blue-grey--text text--darken-1">参加中ルーム情報</h2>
       <v-list>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon color="indigo">label</v-icon>
+            <v-icon color="blue-grey darken-1">label</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-sub-title>部屋名</v-list-tile-sub-title>
@@ -15,7 +14,7 @@
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon color="indigo">label</v-icon>
+            <v-icon color="blue-grey darken-1">label</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-sub-title>ボードゲームタイトル</v-list-tile-sub-title>
@@ -24,7 +23,7 @@
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon color="indigo">label</v-icon>
+            <v-icon color="blue-grey darken-1">label</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-sub-title>参加人数</v-list-tile-sub-title>
@@ -33,7 +32,7 @@
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon color="indigo">label</v-icon>
+            <v-icon color="blue-grey darken-1">label</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-sub-title>備考</v-list-tile-sub-title>
@@ -42,7 +41,7 @@
         </v-list-tile>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon color="indigo">people</v-icon>
+            <v-icon color="blue-grey darken-1">people</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-sub-title>参加者</v-list-tile-sub-title>
@@ -52,7 +51,7 @@
         <v-divider/>
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon color="indigo">map</v-icon>
+            <v-icon color="blue-grey darken-1">map</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-sub-title>チェックイン中</v-list-tile-sub-title>
@@ -61,11 +60,6 @@
         </v-list-tile>
       </v-list>
     </div>
-    <v-btn to="/record/create">ルーム作成</v-btn>
-    <v-btn to="/record/join">ルーム参加</v-btn>
-    <v-btn to="/record/result">結果入力</v-btn>
-    <v-btn to="/record/checkin">チェックイン</v-btn>
-
     <router-view/>
   </div>
 </template>

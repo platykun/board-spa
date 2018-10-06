@@ -1,61 +1,48 @@
 <template>
   <div class="record">
-    recordvue
+    <v-tabs
+      color="blue-grey lighten-1 hidden-xs-only"
+      dark
+      slider-color="deep-orange accent-3"
+    >
+      <v-tab
+        v-for="tab in tabs"
+        :key="tab"
+        :to="tab.action"
+        ripple
+      >
+        <v-icon class="hidden-md-and-down">{{ tab.icon }}</v-icon>
+        {{ tab.title }}
+      </v-tab>
+    </v-tabs>
     <router-view/>
     <v-speed-dial
       v-model="fab"
       bottom
       floating
       fixed
-      right>
+      right
+      class="hidden-sm-and-up"
+    >
       <v-btn
         slot="activator"
         v-model="fab"
-        color="blue darken-2"
+        color="deep-orange accent-3"
         dark
         fab>
         <v-icon>menu</v-icon>
         <v-icon>close</v-icon>
       </v-btn>
       <v-btn
+        v-for="dial in speedDials"
+        :key="dial"
+        :to="dial.action"
         fab
         dark
         small
-        color="green"
-        to="/record/result">
-        <v-icon>note_add</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="green"
-        to="/record/checkin">
-        <v-icon>location_on</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="green"
-        to="/record/join">
-        <v-icon>group_add</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="green"
-        to="/record/create">
-        <v-icon>group</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="green"
-        to="/record">
-        <v-icon>home</v-icon>
+        color="blue-grey darken-1"
+      >
+        <v-icon> {{ dial.icon }} </v-icon>
       </v-btn>
     </v-speed-dial>
   </div>
@@ -67,6 +54,20 @@ export default {
     return {
       msg: 'Welcome to record page',
       fab: false,
+      tabs: [
+        { action: '/record', title: '記録トップ', icon: 'home' },
+        { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
+        { action: '/record/create', title: 'ルーム作成', icon: 'group' },
+        { action: '/record/join', title: 'ルーム参加', icon: 'group_add' },
+        { action: '/record/result', title: '結果入力', icon: 'note_add' },
+      ],
+      speedDials: [
+        { action: '/record/result', title: '結果入力', icon: 'note_add' },
+        { action: '/record/join', title: 'ルーム参加', icon: 'group_add' },
+        { action: '/record/create', title: 'ルーム作成', icon: 'group' },
+        { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
+        { action: '/record', title: '記録トップ', icon: 'home' },
+      ]
     };
   },
 };

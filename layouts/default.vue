@@ -7,7 +7,7 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer">
         <v-icon>ballot</v-icon>
       </v-toolbar-side-icon>
-      <v-toolbar-title>
+      <v-toolbar-title class="hidden-xs-only">
         BoardGameDiary
       </v-toolbar-title>
       <v-spacer/>
@@ -58,8 +58,7 @@
       </v-list>
     </v-navigation-drawer>
     <nuxt/>
-    <v-footer
-      fixed>
+    <v-footer class="mt-5">
       <v-card
         class="flex"
         flat
