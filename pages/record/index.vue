@@ -1,6 +1,24 @@
 <template>
   <div class="record">
     <div class="flex xs12 sm6 offset-sm3 mt-3">
+      <v-alert
+        :value="needToCheckIn"
+        color="lime"
+      >
+        チェックインしましょう!!
+      </v-alert>
+      <v-alert
+        :value="needToJoinRoom"
+        color="lime"
+      >
+        ルームに参加しましょう!!
+      </v-alert>
+      <v-alert
+        :value="needToAddResult"
+        color="lime"
+      >
+        結果を記録しましょう!!
+      </v-alert>
       <h2 class="blue-grey--text text--darken-1">参加中ルーム情報</h2>
       <v-list>
         <v-list-tile>
@@ -65,31 +83,29 @@
 </template>
 
 <script>
-import Detail from '~/plugins/js/interface/Detail.js';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
       msg: 'Welcome to record page',
-      placeName: '',
-      roomName: '',
-      boardTitle: '',
-      player: '',
-      remark: '',
-      joinPlayerName: [],
     };
   },
-  beforeCreate() {
-    Detail.getDetail().then(
-      (response) => {
-        const result = response.data.result;
-        this.placeName = result.placeName;
-        this.roomName = result.roomName;
-        this.boardTitle = result.boardTitle;
-        this.player = result.player;
-        this.remark = result.remark;
-        this.joinPlayerName = result.joinPlayerName;
-      });
+  computed: {
+    ...mapGetters({
+      needToCheckIn: 'userDetail/needToCheckIn',
+      needToJoinRoom: 'userDetail/needToJoinRoom',
+      needToAddResult: 'userDetail/needToAddResult',
+      placeName: 'userDetail/placeName',
+      roomName: 'userDetail/roomName',
+      boardTitle: 'userDetail/boardTitle',
+      player: 'userDetail/player',
+      remark: 'userDetail/remark',
+      joinPlayerName: 'userDetail/joinPlayerName',
+    })
+  },
+  async asyncData({ route, store }) {
+    store.dispatch('userDetail/addUserDetail');
   },
 };
 </script>
