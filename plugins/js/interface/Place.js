@@ -12,8 +12,8 @@ export default class Place {
     return api.requestWithToken('get', '/place/find_all/0');
   }
 
-  static checkIn(name) {
-    const url = `/user/checkin/${name}`;
+  static checkIn(id) {
+    const url = `/user/checkin/${id}`;
     return api.requestWithToken('put', url);
   }
 }

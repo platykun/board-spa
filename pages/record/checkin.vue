@@ -11,7 +11,7 @@
       <v-list-tile
         v-for="onePlace in places"
         :key="onePlace"
-        @click="checkin(onePlace.name)">
+        @click="checkin(onePlace.id)">
         <v-list-tile-content @click="notifications = !notifications">
           <v-list-tile-title v-text="onePlace.name"/>
         </v-list-tile-content>
