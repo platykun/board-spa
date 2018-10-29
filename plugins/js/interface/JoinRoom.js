@@ -18,7 +18,7 @@ export default class JoinRoom {
 
   // TODO: userId, idを取得する仕組みができてない
   static joinRoom(id) {
-    const url = `/user/join/${id}`;
+    const url = `/user/room/join/${id}`;
     return api.requestWithToken('put', url);
   }
 }

@@ -1,22 +1,26 @@
 <template>
   <div class="index">
-    <h1>{{ msg }}</h1>
-    {{ $data }}
-    <v-text-field
-      v-model="place"
-      label="場所名検索"/>
-    <v-list subheader>
-      <v-subheader>検索結果</v-subheader>
+    <div class="flex xs12 sm6 offset-sm3 mt-3">
+      <h2 class="blue-grey--text text--darken-1">
+        <v-icon class="blue-grey--text text--darken-1">location_on</v-icon>
+        {{ msg }}
+      </h2>
+      <v-text-field
+        v-model="place"
+        label="場所名検索"/>
+      <v-list subheader>
+        <v-subheader>検索結果</v-subheader>
 
-      <v-list-tile
-        v-for="onePlace in places"
-        :key="onePlace"
-        @click="checkin(onePlace.id)">
-        <v-list-tile-content @click="notifications = !notifications">
-          <v-list-tile-title v-text="onePlace.name"/>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
+        <v-list-tile
+          v-for="onePlace in places"
+          :key="onePlace"
+          @click="checkin(onePlace.id)">
+          <v-list-tile-content @click="notifications = !notifications">
+            <v-list-tile-title v-text="onePlace.name"/>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </div>
   </div>
 </template>
 
@@ -26,7 +30,7 @@ import Place from '~/plugins/js/interface/Place.js';
 export default {
   data() {
     return {
-      msg: 'Welcome to Checkin page',
+      msg: 'チェックイン',
       place: '',
       places: null,
       notifications: null,

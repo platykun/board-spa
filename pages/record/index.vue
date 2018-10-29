@@ -1,107 +1,109 @@
 <template>
   <div class="record">
-    <div class="flex xs12 sm6 offset-sm3 mt-3">
-      <v-alert
-        :value="needToCheckIn"
-        color="lime"
+    <v-flex
+      xs12
+      sm6
+      offset-sm3
+      py-3>
+      <v-card>
+        <v-card-title>
+          <div>
+            <span class="grey--text">チェックイン場所</span><br>
+            <h2 class="blue-grey--text text--darken-1">{{ checkIn }}</h2>
+          </div>
+          <v-spacer/>
+          <v-btn
+            to="/record/checkin"
+            color="deep-orange accent-3"
+            dark>
+            <v-icon>location_on</v-icon>
+            チェックイン
+          </v-btn>
+        </v-card-title>
+      </v-card>
+    </v-flex>
+
+    <v-tabs
+      color="blue-grey lighten-1"
+      dark
+      slider-color="deep-orange accent-3"
+    >
+      <v-tab
+        v-for="tab in tabs"
+        :key="tab"
+        ripple
       >
-        チェックインしましょう!!
-      </v-alert>
-      <v-alert
-        :value="needToJoinRoom"
-        color="lime"
+        <v-icon class="hidden-xs-only">{{ tab.icon }}</v-icon>
+        {{ tab.title }}
+      </v-tab>
+      <v-tab-item
+        v-for="tab in tabs"
+        :key="tab"
       >
-        ルームに参加しましょう!!
-      </v-alert>
-      <v-alert
-        :value="needToAddResult"
-        color="lime"
-      >
-        結果を記録しましょう!!
-      </v-alert>
-      <h2 class="blue-grey--text text--darken-1">参加中ルーム情報</h2>
-      <v-list>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="blue-grey darken-1">label</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-sub-title>部屋名</v-list-tile-sub-title>
-            <v-list-tile-title>{{ roomName }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="blue-grey darken-1">label</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-sub-title>ボードゲームタイトル</v-list-tile-sub-title>
-            <v-list-tile-title>{{ boardTitle }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="blue-grey darken-1">label</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-sub-title>参加人数</v-list-tile-sub-title>
-            <v-list-tile-title>{{ player }}人</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="blue-grey darken-1">label</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-sub-title>備考</v-list-tile-sub-title>
-            <v-list-tile-title>{{ remark }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="blue-grey darken-1">people</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-sub-title>参加者</v-list-tile-sub-title>
-            <v-list-tile-title>{{ joinPlayerName }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-divider/>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="blue-grey darken-1">map</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-sub-title>チェックイン中</v-list-tile-sub-title>
-            <v-list-tile-title>{{ placeName }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </div>
+        <div v-if="tab.action === 'myHistory'">
+          <h2 class="blue-grey--text text--darken-1">自分のプレイ履歴</h2>
+          <recordCard
+            v-for="history in myHistory"
+            :key="history"
+            :board-game="history.boardGameTitle"
+            :date="history.create"
+            :name="history.userId"
+            :place="history.placeName"
+          />
+        </div>
+        <div v-else-if="tab.action === 'nearHistory'">
+          <h2 class="blue-grey--text text--darken-1">チェックイン場所でのプレイ履歴</h2>
+          <recordCard
+            v-for="history in nearHistory"
+            :key="history"
+            :board-game="history.boardGameTitle"
+            :date="history.create"
+            :name="history.userId"
+            :place="history.placeName"
+          />
+        </div>
+        <div v-else-if="tab.action === 'allHistory'">
+          <h2 class="blue-grey--text text--darken-1">すべてのプレイ履歴</h2>
+          <recordCard
+            v-for="history in allHistory"
+            :key="history"
+            :board-game="history.boardGameTitle"
+            :date="history.create"
+            :name="history.userId"
+            :place="history.placeName"
+          />
+        </div>
+      </v-tab-item>
+    </v-tabs>
     <router-view/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import recordCard from '~/components/record/recordCard';
 
 export default {
+  components: {
+   'recordCard': recordCard,
+  },
   data() {
     return {
       msg: 'Welcome to record page',
+      checkInPlace: 'ボドゲショップ',
+      tabs: [
+        { action: 'myHistory', title: 'Myりれき', icon: 'home' },
+        { action: 'nearHistory', title: '付近', icon: 'location_on' },
+        { action: 'allHistory', title: 'すべて', icon: 'group' },
+      ],
     };
   },
   computed: {
     ...mapGetters({
-      needToCheckIn: 'userDetail/needToCheckIn',
-      needToJoinRoom: 'userDetail/needToJoinRoom',
-      needToAddResult: 'userDetail/needToAddResult',
-      placeName: 'userDetail/placeName',
-      roomName: 'userDetail/roomName',
-      boardTitle: 'userDetail/boardTitle',
-      player: 'userDetail/player',
-      remark: 'userDetail/remark',
-      joinPlayerName: 'userDetail/joinPlayerName',
+      checkIn: 'userDetail/checkIn',
+      myHistory: 'userDetail/myHistory',
+      nearHistory: 'userDetail/nearHistory',
+      allHistory: 'userDetail/allHistory',
     })
   },
   async asyncData({ route, store }) {
