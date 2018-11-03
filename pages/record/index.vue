@@ -22,8 +22,8 @@
         </v-card-title>
       </v-card>
     </v-flex>
-
     <v-tabs
+      v-model="active_tab"
       color="blue-grey lighten-1"
       dark
       slider-color="deep-orange accent-3"
@@ -40,33 +40,52 @@
         v-for="tab in tabs"
         :key="tab"
       >
-        <div v-if="tab.action === 'myHistory'">
+        <div v-show="tab.action === 'myHistory'">
           <h2 class="blue-grey--text text--darken-1">自分のプレイ履歴</h2>
+          <v-card
+            flat>
+            <v-card-title>
+              <v-spacer/>
+              <v-btn
+                to="/record/result"
+                color="deep-orange accent-3"
+                dark>
+                <v-icon>add</v-icon>
+                記録
+              </v-btn>
+            </v-card-title>
+          </v-card>
           <recordCard
             v-for="history in myHistory"
             :key="history"
+            :id="history.id"
+            :parent-id="history.parentId"
             :board-game="history.boardGameTitle"
             :date="history.create"
             :name="history.userId"
             :place="history.placeName"
           />
         </div>
-        <div v-else-if="tab.action === 'nearHistory'">
+        <div v-show="tab.action === 'nearHistory'">
           <h2 class="blue-grey--text text--darken-1">チェックイン場所でのプレイ履歴</h2>
           <recordCard
             v-for="history in nearHistory"
             :key="history"
+            :id="history.id"
+            :parent-id="history.parentId"
             :board-game="history.boardGameTitle"
             :date="history.create"
             :name="history.userId"
             :place="history.placeName"
           />
         </div>
-        <div v-else-if="tab.action === 'allHistory'">
+        <div v-show="tab.action === 'allHistory'">
           <h2 class="blue-grey--text text--darken-1">すべてのプレイ履歴</h2>
           <recordCard
             v-for="history in allHistory"
             :key="history"
+            :id="history.id"
+            :parent-id="history.parentId"
             :board-game="history.boardGameTitle"
             :date="history.create"
             :name="history.userId"
@@ -89,6 +108,7 @@ export default {
   },
   data() {
     return {
+      active_tab: 0,
       msg: 'Welcome to record page',
       checkInPlace: 'ボドゲショップ',
       tabs: [
@@ -104,9 +124,10 @@ export default {
       myHistory: 'userDetail/myHistory',
       nearHistory: 'userDetail/nearHistory',
       allHistory: 'userDetail/allHistory',
-    })
+    }),
   },
   async asyncData({ route, store }) {
+    console.log("record/index.vue asyncData called");
     store.dispatch('userDetail/addUserDetail');
   },
 };

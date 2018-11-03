@@ -17,6 +17,7 @@
 
     <section>
       <v-tabs
+        v-model="defaultTabPos"
         color="blue-grey lighten-1"
         dark
         slider-color="deep-orange accent-3"
@@ -87,6 +88,7 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
+      defaultTabPos: 0,
       msg: 'Welcome to Board Game Diary',
       tabs: [
         { action: '/record', title: '記録する', icon: 'home' },

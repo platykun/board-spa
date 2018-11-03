@@ -1,6 +1,8 @@
 <template>
   <v-card
-    class="ma-2">
+    :to= "resultLink"
+    class="ma-2"
+  >
     <v-card-title>
       <div>
         <span class="grey--text">ボードゲーム名</span>
@@ -23,6 +25,14 @@
         type: String,
         required: true
       },
+      id: {
+        type: Number,
+        required: true
+      },
+      parentId: {
+        type: Number,
+        required: true
+      },
       date: {
         type: Date,
         default: null,
@@ -38,7 +48,17 @@
         default: '場所情報無し',
         required: false
       }
-    }
+    },
+    computed: {
+      resultLink: function(){
+        if(this.parentId === -1) {
+          return '/record/result/' + this.id;
+        } else {
+          return '/record/result/' + this.parentId;
+        }
+
+      },
+    },
   }
 </script>
 
