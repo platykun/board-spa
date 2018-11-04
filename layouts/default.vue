@@ -14,7 +14,7 @@
       <v-toolbar-items>
         <v-btn
           flat
-          to="/login">
+          to="/signup">
           <v-icon>fa-user-plus</v-icon>
           <h3 class="hidden-md-and-down">新規登録</h3>
         </v-btn>
@@ -94,8 +94,6 @@
           { header: '記録' },
           { action: '/record', title: '記録トップ', icon: 'home' },
           { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
-          { action: '/record/create', title: 'ルーム作成', icon: 'group' },
-          { action: '/record/join', title: 'ルーム参加', icon: 'group_add' },
           { action: '/record/result', title: '結果入力', icon: 'note_add' },
           { divider: true },
           { header: '履歴' },

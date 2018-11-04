@@ -17,7 +17,7 @@
           color="blue-grey darken-1"
           class="white--text">
           <v-card-title primary-title>
-            <div class="headline">Login</div>
+            <div class="headline">signup</div>
           </v-card-title>
           <v-card-content>
             <div class="mx-2">
@@ -28,6 +28,15 @@
                 name="userId"
                 type="text"
                 label="ユーザID"
+                dark
+              />
+              <v-text-field
+                v-validate="'required|max:10'"
+                v-model="userName"
+                :error-messages="errors"
+                name="userName"
+                type="text"
+                label="ユーザ名"
                 dark
               />
               <v-text-field
@@ -45,13 +54,13 @@
             <v-btn
               class="deep-orange accent-3"
               dark
-              @click.stop.prevent="sendLogin">ログイン</v-btn>
+              @click.stop.prevent="createUser">作成</v-btn>
             <v-spacer/>
             <v-btn
               flat
               dark
-              to="/signup">
-              アカウントが無い方はこちら
+              to="/login">
+              ログインはこちら
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -61,41 +70,35 @@
 </template>
 
 <script>
+import Signup from '~/plugins/js/interface/Signup';
 import Login from '~/plugins/js/interface/Login';
 
 export default {
   data() {
     return {
-      msg: 'Welcome to login page. you can enter admin/password',
+      msg: 'Welcome to signup page.',
       errorMsg: null,
       errors: null,
       userId: '',
+      userName: '',
       password: '',
     };
   },
-  mounted() {
-    if (localStorage.userId) {
-      this.userId = localStorage.userId;
-    }
-    if (localStorage.password) {
-      this.password = localStorage.password;
-    }
-  },
   methods: {
-    sendLogin() {
-      const login = new Login(this.userId, this.password);
-
-      login.login().then(
+    createUser() {
+      Signup.signup(this.userId, this.userName, this.password).then(
         (response) => {
-          // eslint-disable-next-line
-          console.log(response);
-          localStorage.userId = this.userId;
-          localStorage.password = this.password;
-          localStorage.token = response.data.token;
-          localStorage.authList = response.data.authList;
-          localStorage.logined = true;
-
-          this.$router.push({ path: '/top' });
+          const login = new Login(this.userId, this.password);
+          login.login().then(
+            (response) => {
+              localStorage.userId = this.userId;
+              localStorage.password = this.password;
+              localStorage.token = response.data.token;
+              localStorage.authList = response.data.authList;
+              localStorage.logined = true;
+              this.$router.push({path: '/top'});
+            }
+          );
         })
         .catch((error) => {
           this.errorMsg = 'ログインに失敗しました. reason:' + error.message;
