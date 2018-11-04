@@ -30,7 +30,7 @@
     >
       <v-tab
         v-for="tab in tabs"
-        :key="tab"
+        :key="tab + 'v-tab'"
         ripple
       >
         <v-icon class="hidden-xs-only">{{ tab.icon }}</v-icon>
@@ -38,7 +38,7 @@
       </v-tab>
       <v-tab-item
         v-for="tab in tabs"
-        :key="tab"
+        :key="tab + 'v-tab-item'"
       >
         <div v-show="tab.action === 'myHistory'">
           <h2 class="blue-grey--text text--darken-1">自分のプレイ履歴</h2>
