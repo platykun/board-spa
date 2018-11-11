@@ -23,7 +23,7 @@
         </div>
         <v-spacer/>
         <div>
-          <span class="grey--text">{{ parent.create }}</span>
+          <span class="grey--text">{{ parent.create | moment }}</span>
         </div>
       </v-card-title>
       <v-card-text>
@@ -46,7 +46,7 @@
         </div>
         <v-spacer/>
         <div>
-          <span class="grey--text">{{ child.create }}</span>
+          <span class="grey--text">{{ child.create | moment }}</span>
         </div>
       </v-card-title>
       <v-card-text>
@@ -73,9 +73,15 @@
 import Result from '~/plugins/js/interface/Result.js';
 import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
 import recordCard from '~/components/record/recordCard';
+import moment from 'moment';
 
 export default {
   name: 'Result',
+  filters: {
+    moment: function (date) {
+      return moment(date).format('YYYY/MM/DD HH:mm');
+    },
+  },
   components: {
     'recordCard': recordCard,
   },

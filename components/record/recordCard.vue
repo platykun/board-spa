@@ -10,7 +10,7 @@
       </div>
       <v-spacer/>
       <div>
-        <span class="grey--text">{{ date }}</span>
+        <span class="grey--text">{{ date | moment }}</span>
         <h3 class="grey--text">{{ name }}</h3>
         <h3 class="grey--text">{{ place }}</h3>
       </div>
@@ -19,7 +19,14 @@
 </template>
 
 <script>
+  import moment from 'moment';
+
   export default {
+    filters: {
+      moment: function (date) {
+        return moment(date).format('YYYY/MM/DD HH:mm');
+      },
+    },
     props: {
       boardGame: {
         type: String,

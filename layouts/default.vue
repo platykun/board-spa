@@ -11,20 +11,9 @@
         BoardGameDiary
       </v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-items>
-        <v-btn
-          flat
-          to="/signup">
-          <v-icon>fa-user-plus</v-icon>
-          <h3 class="hidden-md-and-down">新規登録</h3>
-        </v-btn>
-        <v-btn
-          flat
-          to="/login">
-          <v-icon>fa-sign-in</v-icon>
-          <h3 class="hidden-md-and-down">ログイン</h3>
-        </v-btn>
-      </v-toolbar-items>
+      <v-toolbar-side-icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>person</v-icon>
+      </v-toolbar-side-icon>
     </v-toolbar>
     <v-navigation-drawer
       v-model="drawer"
@@ -57,6 +46,30 @@
         </template>
       </v-list>
     </v-navigation-drawer>
+    <v-navigation-drawer
+      v-model="rightDrawer"
+      absolute
+      temporary
+      right>
+      <v-toolbar 
+        flat >
+        <v-list>
+          <v-list-tile avatar>
+            <v-list-tile-avatar>
+              <v-icon>person</v-icon>
+            </v-list-tile-avatar>
+
+            <v-list-tile-content>
+              <v-list-tile-title>LoginedUserName</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider/>
+          <v-list-tile>
+            <v-btn>tweet</v-btn>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+    </v-navigation-drawer>
     <nuxt/>
     <v-footer class="mt-5">
       <v-card
@@ -88,6 +101,7 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         drawer: null,
+        rightDrawer: null,
         items: [
           { action: '/', title: 'ページトップ', icon: 'home' },
           { divider: true },
