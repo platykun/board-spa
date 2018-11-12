@@ -38,6 +38,7 @@ module.exports = {
   plugins: [
     {src: '~plugins/vee-validate.js', ssr: true},
     '~plugins/vue-awesome.js',
+    '~/plugins/vuetify.js',
   ],
 
   /*
@@ -98,12 +99,12 @@ module.exports = {
     API_URL: process.env.BASE_URL || 'http://localhost:8090'
   },
   vuetify: {
-    iconfont: 'mdi',
+    // Vuetify の設定はここに書く
     theme: {
       primary: '#3f51b5',
       secondary: '#b0bec5',
       accent: '#8c9eff',
       error: '#b71c1c'
     }
-  }
+  },
 }
