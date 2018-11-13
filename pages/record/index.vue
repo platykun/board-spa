@@ -21,6 +21,21 @@
           </v-btn>
         </v-card-title>
       </v-card>
+      <v-card>
+        <v-card-title>
+          <div>
+            <h2 class="blue-grey--text text--darken-1">記録の共有</h2>
+          </div>
+          <v-spacer/>
+          <v-btn
+            to="/share/tweet"
+            color="deep-orange accent-3"
+            dark>
+            <v-icon>fa-twitter</v-icon>
+            共有
+          </v-btn>
+        </v-card-title>
+      </v-card>
     </v-flex>
     <v-tabs
       v-model="active_tab"
