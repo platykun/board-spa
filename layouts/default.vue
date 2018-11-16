@@ -19,8 +19,7 @@
     <v-navigation-drawer
       v-model="drawer"
       absolute
-      temporary
-      right>
+      temporary>
       <v-list dense>
         <v-list-tile avatar>
           <v-list-tile-avatar>
@@ -86,7 +85,7 @@
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
-        drawer: null,
+        drawer: false,
         items: [
           { divider: true },
           { action: '/', title: 'ページトップ', icon: 'home' },
@@ -99,6 +98,9 @@
           { divider: true },
           { header: '共有' },
           { action: '/share/tweet', title: 'ツイート', icon: 'fa-twitter' },
+          { divider: true },
+          { header: 'other' },
+          { action: '/tutorial', title: 'チュートリアル', icon: 'contact_support' },
           { divider: true },
         ],
         footerIcons: [

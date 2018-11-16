@@ -96,7 +96,7 @@ export default {
               localStorage.token = response.data.token;
               localStorage.authList = response.data.authList;
               localStorage.logined = true;
-              this.$router.push({path: '/top'});
+              this.$router.push({path: '/tutorial'});
             }
           );
         })

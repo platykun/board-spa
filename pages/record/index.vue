@@ -6,35 +6,44 @@
       offset-sm3
       py-3>
       <v-card>
-        <v-card-title>
-          <div>
-            <span class="grey--text">チェックイン場所</span><br>
-            <h2 class="blue-grey--text text--darken-1">{{ checkIn }}</h2>
-          </div>
-          <v-spacer/>
-          <v-btn
-            to="/record/checkin"
-            color="deep-orange accent-3"
-            dark>
-            <v-icon>location_on</v-icon>
-            チェックイン
-          </v-btn>
-        </v-card-title>
-      </v-card>
-      <v-card>
-        <v-card-title>
-          <div>
-            <h2 class="blue-grey--text text--darken-1">記録の共有</h2>
-          </div>
-          <v-spacer/>
-          <v-btn
-            to="/share/tweet"
-            color="deep-orange accent-3"
-            dark>
-            <v-icon>fa-twitter</v-icon>
-            共有
-          </v-btn>
-        </v-card-title>
+        <v-list two-line>
+          <template v-for="(item, index) in items">
+            <v-list-tile
+              :key="item.title"
+              avatar
+              ripple
+            >
+              <v-list-tile-content>
+                <v-list-tile-title>
+                  <h2 
+                    v-if="item.showCheckIn"
+                    class="blue-grey--text text--darken-1">
+                    {{ checkIn }}
+                  </h2>
+                  <h2 
+                    v-else 
+                    class="blue-grey--text text--darken-1">
+                    {{ item.title }}
+                  </h2>
+                </v-list-tile-title>
+                <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+
+              <v-list-tile-action>
+                <v-btn
+                  :to="item.to"
+                  color="deep-orange accent-3"
+                  dark>
+                  <v-icon>{{ item.icon }}</v-icon>
+                  {{ item.icontitle }}
+                </v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
+            <v-divider
+              v-if="index + 1 < items.length"
+              :key="index"/>
+          </template>
+        </v-list>
       </v-card>
     </v-flex>
     <v-tabs
@@ -57,19 +66,6 @@
       >
         <div v-show="tab.action === 'myHistory'">
           <h2 class="blue-grey--text text--darken-1">自分のプレイ履歴</h2>
-          <v-card
-            flat>
-            <v-card-title>
-              <v-spacer/>
-              <v-btn
-                to="/record/result"
-                color="deep-orange accent-3"
-                dark>
-                <v-icon>add</v-icon>
-                記録
-              </v-btn>
-            </v-card-title>
-          </v-card>
           <recordCard
             v-for="history in myHistory"
             :key="history"
@@ -131,6 +127,32 @@ export default {
         { action: 'nearHistory', title: '付近', icon: 'location_on' },
         { action: 'allHistory', title: 'すべて', icon: 'group' },
       ],
+      items: [
+        {
+          headline: 'チェックイン場所',
+          title: '未チェックイン',
+          to: '/record/checkin',
+          icon: 'location_on',
+          icontitle: 'チェックイン',
+          showCheckIn: true,
+        },
+        {
+          headline: null,
+          title: '記録',
+          to: '/record/result',
+          icon: 'add',
+          icontitle: '記録',
+          showCheckIn: false,
+        },
+        {
+          headline: null,
+          title: '記録の共有',
+          to: '/share/tweet',
+          icon: 'fa-twitter',
+          icontitle: '共有',
+          showCheckIn: false,
+        },
+        ],
     };
   },
   computed: {
