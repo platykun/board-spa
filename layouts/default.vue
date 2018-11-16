@@ -4,22 +4,32 @@
       dark
       color="blue-grey darken-1"
       clipped="true">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer">
+      <v-toolbar-side-icon to="/">
         <v-icon>ballot</v-icon>
       </v-toolbar-side-icon>
-      <v-toolbar-title class="hidden-xs-only">
+      <v-toolbar-title 
+        class="hidden-xs-only">
         BoardGameDiary
       </v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-side-icon @click.stop="rightDrawer = !rightDrawer">
+      <v-toolbar-side-icon @click.stop="drawer = !drawer">
         <v-icon>person</v-icon>
       </v-toolbar-side-icon>
     </v-toolbar>
     <v-navigation-drawer
       v-model="drawer"
       absolute
-      temporary>
+      temporary
+      right>
       <v-list dense>
+        <v-list-tile avatar>
+          <v-list-tile-avatar>
+            <v-icon>person</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title>LoginedUserName</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <template v-for="(item, index) in items">
           <v-list-tile
             v-if="item.action"
@@ -45,30 +55,6 @@
           </v-subheader>
         </template>
       </v-list>
-    </v-navigation-drawer>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      absolute
-      temporary
-      right>
-      <v-toolbar 
-        flat >
-        <v-list>
-          <v-list-tile avatar>
-            <v-list-tile-avatar>
-              <v-icon>person</v-icon>
-            </v-list-tile-avatar>
-
-            <v-list-tile-content>
-              <v-list-tile-title>LoginedUserName</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-divider/>
-          <v-list-tile>
-            <v-btn>tweet</v-btn>
-          </v-list-tile>
-        </v-list>
-      </v-toolbar>
     </v-navigation-drawer>
     <nuxt/>
     <v-footer class="mt-5">
@@ -101,25 +87,19 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         drawer: null,
-        rightDrawer: null,
         items: [
+          { divider: true },
           { action: '/', title: 'ページトップ', icon: 'home' },
+          { action: '/login', title: 'ログイン', icon: 'home'},
           { divider: true },
           { header: '記録' },
-          { action: '/record', title: '記録トップ', icon: 'home' },
+          { action: '/record', title: 'トップ', icon: 'home' },
           { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
           { action: '/record/result', title: '結果入力', icon: 'note_add' },
           { divider: true },
-          { header: '履歴' },
-          { action: '/browse', title: '履歴トップ', icon: 'home' },
+          { header: '共有' },
+          { action: '/share/tweet', title: 'ツイート', icon: 'fa-twitter' },
           { divider: true },
-          { header: '登録' },
-          { action: '/register', title: '登録トップ', icon: 'home' },
-          { divider: true },
-          { header: 'Labels' },
-          { action: 'label', title: 'Family', icon: 'dashboard' },
-          { action: 'label', title: 'Friends', icon: 'dashboard' },
-          { action: 'label', title: 'Work', icon: 'dashboard' },
         ],
         footerIcons: [
           { name: 'fa-twitter-square', link: 'https://twitter.com/platykun'},
