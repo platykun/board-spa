@@ -14,8 +14,9 @@
         <v-list-tile
           v-for="onePlace in places"
           :key="onePlace"
-          @click="checkin(onePlace.id)">
-          <v-list-tile-content @click="notifications = !notifications">
+          :to="checkinLink(onePlace.id)">
+          <v-list-tile-content
+            @click="notifications = !notifications">
             <v-list-tile-title v-text="onePlace.name"/>
           </v-list-tile-content>
         </v-list-tile>
@@ -35,6 +36,8 @@ export default {
       places: null,
       notifications: null,
     };
+  },
+  computed: {
   },
   watch: {
     place(val) {
@@ -58,9 +61,8 @@ export default {
       });
   },
   methods: {
-    checkin(val) {
-      Place.checkIn(val);
-      this.$router.push({ path: '/record' });
+    checkinLink(id){
+      return '/record/checkin/' + id;
     },
   },
 };

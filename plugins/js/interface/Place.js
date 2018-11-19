@@ -2,6 +2,12 @@ import api from '~/plugins/js/helper/api';
 
 /* eslint-disable-next-line */
 export default class Place {
+  static findById(id) {
+    const url = `/place/find/id/${id}`;
+    return api.requestWithToken('get', url);
+  }
+
+
   static findPlace(name) {
     const url = `/place/find/${name}`;
 

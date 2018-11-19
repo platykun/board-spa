@@ -21,7 +21,7 @@
             large
             to="/login"
           >
-            Get Started
+            はじめる
           </v-btn>
         </v-layout>
       </v-parallax>

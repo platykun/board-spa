@@ -63,7 +63,6 @@
         } else {
           return '/record/result/' + this.parentId;
         }
-
       },
     },
   }

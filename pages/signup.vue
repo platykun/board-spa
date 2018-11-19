@@ -31,15 +31,6 @@
                 dark
               />
               <v-text-field
-                v-validate="'required|max:10'"
-                v-model="userName"
-                :error-messages="errors"
-                name="userName"
-                type="text"
-                label="ユーザ名"
-                dark
-              />
-              <v-text-field
                 v-validate="'required'"
                 v-model="password"
                 :error-messages="errors"
@@ -86,7 +77,7 @@ export default {
   },
   methods: {
     createUser() {
-      Signup.signup(this.userId, this.userName, this.password).then(
+      Signup.signup(this.userId, this.userId, this.password).then(
         (response) => {
           const login = new Login(this.userId, this.password);
           login.login().then(
