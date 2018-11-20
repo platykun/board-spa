@@ -6,29 +6,25 @@
       offset-sm3
       py-3>
       <v-card>
-        <v-list two-line>
+        <v-list three-line>
           <template v-for="(item, index) in items">
             <v-list-tile
               :key="item.title"
               avatar
-              ripple
             >
               <v-list-tile-content>
-                <v-list-tile-title>
-                  <h2 
-                    v-if="item.showCheckIn"
-                    class="blue-grey--text text--darken-1">
-                    {{ checkIn }}
-                  </h2>
-                  <h2 
-                    v-else 
-                    class="blue-grey--text text--darken-1">
-                    {{ item.title }}
-                  </h2>
-                </v-list-tile-title>
+                <h2
+                  v-if="item.showCheckIn"
+                  class="blue-grey--text text--darken-1 text-overflow-ellipsis">
+                  {{ checkIn }}
+                </h2>
+                <h2
+                  v-else
+                  class="blue-grey--text text--darken-1">
+                  {{ item.title }}
+                </h2>
                 <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
               </v-list-tile-content>
-
               <v-list-tile-action>
                 <v-btn
                   :to="item.to"
@@ -75,6 +71,7 @@
             :date="history.create"
             :name="history.userId"
             :place="history.placeName"
+            disable-name
           />
         </div>
         <div v-show="tab.action === 'nearHistory'">
@@ -88,6 +85,7 @@
             :date="history.create"
             :name="history.userId"
             :place="history.placeName"
+            disable-place
           />
         </div>
         <div v-show="tab.action === 'allHistory'">
@@ -172,4 +170,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .text-overflow-ellipsis {
+    text-overflow: ellipsis;
+  }
 </style>

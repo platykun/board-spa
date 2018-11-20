@@ -5,14 +5,19 @@
   >
     <v-card-title>
       <div>
-        <span class="grey--text">ボードゲーム名</span>
-        <h2 class="blue-grey--text text--darken-1">{{ boardGame }}</h2>
+        <h3 class="blue-grey--text text--darken-1">{{ boardGame }}</h3>
       </div>
       <v-spacer/>
       <div>
-        <span class="grey--text">{{ date | moment }}</span>
-        <h3 class="grey--text">{{ name }}</h3>
-        <h3 class="grey--text">{{ place }}</h3>
+        <span
+          v-if="!disableDate"
+          class="grey--text">{{ date | moment }}</span>
+        <h4
+          v-if="!disableName"
+          class="grey--text">{{ name }}</h4>
+        <h4
+          v-if="!disablePlace"
+          class="grey--text">{{ place }}</h4>
       </div>
     </v-card-title>
   </v-card>
@@ -54,15 +59,23 @@
         type: String,
         default: '場所情報無し',
         required: false
-      }
+      },
+      disableDate: {
+        type: Boolean,
+        default: false
+      },
+      disableName: {
+          type: Boolean,
+          default: false,
+      },
+      disablePlace: {
+          type: Boolean,
+          default: false,
+      },
     },
     computed: {
       resultLink: function(){
-        if(this.parentId === -1) {
-          return '/record/result/' + this.id;
-        } else {
-          return '/record/result/' + this.parentId;
-        }
+        return '/record/result/' + this.id;
       },
     },
   }

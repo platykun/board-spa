@@ -23,6 +23,9 @@ export const getters = {
 };
 
 export const mutations = {
+  setCheckIn(state, checkIn) {
+    state.checkIn = checkIn;
+  },
   setDetail(state, detail) {
     state.checkIn = detail.checkIn;
     state.myHistory = detail.myHistory;
@@ -39,5 +42,8 @@ export const actions = {
         commit('setDetail', response.data.result);
       }
     );
-  }
+  },
+  updateCheckIn({ commit }, checkin) {
+    commit('setCheckIn', checkin);
+  },
 };

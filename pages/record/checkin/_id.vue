@@ -25,7 +25,7 @@
             class="deep-orange accent-3"
             dark
             large
-            @click="checkin()"
+            @click="checkIn()"
           >
             <v-icon>location_on</v-icon>
             チェックインする
@@ -44,21 +44,21 @@ export default {
   data() {
     return {
       place: '',
-      id: -1,
     };
   },
-  beforeCreate(params) {
-    this.id = this.$route.params.id;
-    Place.findById(this.id).then(
+  beforeCreate() {
+    const id = this.$route.params.id;
+    Place.findById(id).then(
       ( response ) => {
         this.place = response.data.result;
       }
     );
   },
   methods: {
-    checkin() {
-      Place.checkIn(this.id);
+    checkIn() {
+      Place.checkIn(this.place.id);
       this.$router.push({ path: '/record' });
+      this.store.dispatch("userDetail/updateCheckIn", this.place);
     },
   }
 };

@@ -3,8 +3,8 @@
     <div class="flex xs12 sm6 offset-sm3">
       <h2>プレイ情報</h2>
       <v-text-field
-        v-model="parentId"
-        label="親ID"/>
+        v-model="resultId"
+        label="結果ID"/>
       <div>
         <h4>ボードゲーム名</h4>
         <span>{{ boardGame === null ? boardGameTitle : boardGame.title }}</span>
@@ -22,11 +22,15 @@
       <v-text-field
         v-model="comment"
         label="コメント"/>
+      <UsersSelectMordal
+        v-model="userResults"
+      />
     </div>
     <v-btn
       class="deep-orange accent-3"
       dark
       @click.stop.prevent="result">結果作成</v-btn>
+    子コンポーネントから受け取ったユーザ{{ users }}
   </div>
 </template>
 
@@ -35,12 +39,14 @@ import Result from '~/plugins/js/interface/Result.js';
 import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
 import BoardGameSelectMordal from '~/components/record/boardGameSelectMordal';
 import PlaceSelectMordal from '~/components/record/placeSelectMordal';
+import UsersSelectMordal from '~/components/record/usersSelectMordal';
 
 export default {
   name: 'Result',
   components: {
     'BoardGameSelectMordal': BoardGameSelectMordal,
     'PlaceSelectMordal': PlaceSelectMordal,
+    'UsersSelectMordal': UsersSelectMordal,
   },
   data() {
     return {
@@ -54,27 +60,32 @@ export default {
       comment: '',
       boardGame: null,
       place: null,
+      userResults: [],
     };
   },
   asyncData({ query }, callback) {
     // 親IDが指定されていない場合はデフォルト値を使う.
-    if(typeof(query.parentId) === "undefined") {
-      callback(null, {});
+    if(typeof(query.resultId) === "undefined") {
+      callback(null, {
+        resultId: -1,
+      });
       return null;
     }
 
-    // getパラメータにparentIdが指定されていた場合検索して値を取得してくる.
-    const parentId = query['parentId'];
-    if(parentId != null) {
-      HistoryResult.getHistoriesById(parentId).then(
+    // getパラメータに結果Idが指定されていた場合検索して値を取得してくる.
+    const resultId = query['resultId'];
+    if(resultId != null) {
+      HistoryResult.getHistoriesById(resultId).then(
         (response) => {
-          let resParent = response.data.result.parent;
+          let userList = response.data.result.userList;
+          let result = response.data.result;
           callback(null, {
-            parentId: parentId,
-            boardGameId: resParent.boardGameId,
-            boardGameTitle: resParent.boardGameTitle,
-            placeId: resParent.placeId,
-            placeName: resParent.placeName,
+            resultId: resultId,
+            boardGameId: result.boardGameId,
+            boardGameTitle: result.boardGameTitle,
+            placeId: result.placeId,
+            placeName: result.placeName,
+            userResults: userList,
           })
         });
     }
@@ -86,7 +97,7 @@ export default {
       let sendPlaceId = (this.place === null) ? this.placeId : this.place.id;
       let sendPlaceName = (this.place === null) ? this.placeName : this.place.name;
 
-      Result.result(this.parentId, sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, this.score, this.comment).then(
+      Result.result(this.resultId, sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, this.score, this.comment).then(
         (response) => {
           // eslint-disable-next-line
           console.log(response);

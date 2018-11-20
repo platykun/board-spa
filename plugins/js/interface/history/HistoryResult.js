@@ -8,7 +8,7 @@ export default class HistoryResult {
   }
 
   static getHistoriesById(id) {
-    const url = `/user/history/result/parent/${id}`;
+    const url = `/user/history/result/${id}`;
     return api.requestWithToken('get', url);
   }
 }
