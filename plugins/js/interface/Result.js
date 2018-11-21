@@ -2,9 +2,9 @@ import api from '~/plugins/js/helper/api';
 
 /* eslint-disable-next-line */
 export default class Result {
-  static result(parentId, boardGameId, boardGameTitle, placeId, placeName, score, comment) {
+  static result(boardGameId, boardGameTitle, placeId, placeName, userList) {
     const params = {
-      parentId, boardGameId, boardGameTitle, placeId, placeName, score, comment,
+      boardGameId, boardGameTitle, placeId, placeName, userList,
     };
     const url = '/user/result';
     return api.requestWithToken('put', url, params);

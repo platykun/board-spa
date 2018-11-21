@@ -105,110 +105,128 @@
 
 <script>
 import User from '~/plugins/js/interface/User.js';
+import UserResult from '~/plugins/js/interface/UserResult.js';
 
 export default {
-    data() {
-      return {
-        dialog: false,
-        headers: [
-          {
-            text: 'users',
-            align: 'left',
-            sortable: false,
-            value: 'userId'
-          },
-          {text: 'score', value: 'score'},
-          {text: 'Actions', value: 'userId', sortable: false}
-        ],
-        users: [],
-        userData: [],
-        editedIndex: -1,
-        editedItem: {
-          userId: '',
-          score: 0,
-          comment: '',
-        },
-        defaultItem: {
-          userId: '',
-          score: 0,
-          comment: '',
-        },
-        selectUserName: '',
-      };
+  props: {
+    inputUsers: {
+      type: Array,
+      required: true
     },
-
-    computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? '参加者追加' : '参加者編集'
-      }
-    },
-
-    watch: {
-      dialog (val) {
-        val || this.close()
-      },
-      selectUserName(val) {
-        if(val == null)return;
-        if(val === '')return;
-
-        User.findLikeId(val).then(
-          (response) => {
-            this.userData = response.data.result;
-          }
-        )
-      }
-
-    },
-
-    created () {
-      this.initialize()
-    },
-
-    methods: {
-      initialize () {
-        this.users = []
-      },
-
-      editItem (item) {
-        this.editedIndex = this.users.indexOf(item);
-        this.editedItem = Object.assign({}, item);
-        this.dialog = true;
-        this.$emit('input', this.users);
-      },
-
-      deleteItem (item) {
-        const index = this.users.indexOf(item);
-        confirm('Are you sure you want to delete this item?') && this.users.splice(index, 1);
-        this.$emit('input', this.users);
-      },
-
-      close () {
-        this.dialog = false;
-        setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem);
-          this.editedIndex = -1
-        }, 300);
-        this.$emit('input', this.users);
-      },
-
-      save () {
-        if (this.editedIndex > -1) {
-          Object.assign(this.users[this.editedIndex], this.editedItem)
-        } else {
-          this.users.push(this.editedItem)
-        }
-        this.close();
-        this.$emit('input', this.users);
-      },
-
-      selectUser(val) {
-        this.editedItem.userId = val;
-        this.selectUserName = '';
-        this.userData = [];
-      }
-
+    resultId: {
+      type: String,
+      required: true
     }
+  },
+  data() {
+    return {
+      dialog: false,
+      headers: [
+        {
+          text: 'users',
+          align: 'left',
+          sortable: false,
+          value: 'userId'
+        },
+        {text: 'score', value: 'score'},
+        {text: 'Actions', value: 'userId', sortable: false}
+      ],
+      users: [],
+      userData: [],
+      editedIndex: -1,
+      editedItem: {
+        userId: '',
+        score: 0,
+        comment: '',
+      },
+      defaultItem: {
+        userId: '',
+        score: 0,
+        comment: '',
+      },
+      selectUserName: '',
+    };
+  },
+
+  computed: {
+    formTitle () {
+      return this.editedIndex === -1 ? '参加者追加' : '参加者編集'
+    }
+  },
+
+  watch: {
+    dialog (val) {
+      val || this.close()
+    },
+    selectUserName(val) {
+      if(val == null)return;
+      if(val === '')return;
+
+      User.findLikeId(val).then(
+        (response) => {
+          this.userData = response.data.result;
+        }
+      )
+    }
+
+  },
+
+  created () {
+    this.initialize()
+  },
+
+  methods: {
+    initialize () {
+      this.users = this.inputUsers;
+    },
+
+    editItem (item) {
+      this.editedIndex = this.users.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+      this.$emit('input', this.users);
+    },
+
+    deleteItem (item) {
+      const index = this.users.indexOf(item);
+      const userResultid = this.users[index].id;
+      confirm('Are you sure you want to delete this item?') && this.users.splice(index, 1);
+      UserResult.deleteResult(userResultid);
+      this.$emit('input', this.users);
+    },
+
+    close () {
+      this.dialog = false;
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1
+      }, 300);
+      this.$emit('input', this.users);
+    },
+
+    save () {
+      if (this.editedIndex > -1) {
+        UserResult.updateResult(this.editedItem.id, this.resultId, this.editedItem.userId, this.editedItem.score, this.editedItem.comment);
+        Object.assign(this.users[this.editedIndex], this.editedItem)
+      } else {
+        UserResult.newResult(this.resultId, this.editedItem.userId, this.editedItem.score, this.editedItem.comment)
+          .then((response) => {
+            this.editedItem.id = response.data.result.id;
+            this.users.push(this.editedItem);
+          });
+      }
+      this.close();
+      this.$emit('input', this.users);
+    },
+
+    selectUser(val) {
+      this.editedItem.userId = val;
+      this.selectUserName = '';
+      this.userData = [];
+    }
+
   }
+}
 </script>
 
 <style>

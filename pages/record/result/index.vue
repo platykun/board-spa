@@ -8,29 +8,34 @@
       <div>
         <h4>ボードゲーム名</h4>
         <span>{{ boardGame === null ? boardGameTitle : boardGame.title }}</span>
-        <BoardGameSelectMordal v-model="boardGame"/>
+        <BoardGameSelectMordal
+          v-if="isNewResult"
+          v-model="boardGame"/>
       </div>
       <div>
         <h4>場所名</h4>
         <span>{{ place === null ? placeName : place.name }}</span>
-        <PlaceSelectMordal v-model="place"/>
+        <PlaceSelectMordal
+          v-if="isNewResult"
+          v-model="place"/>
       </div>
       <h2>結果詳細</h2>
-      <v-text-field
-        v-model="score"
-        label="スコア"/>
-      <v-text-field
-        v-model="comment"
-        label="コメント"/>
       <UsersSelectMordal
+        v-if="isNewResult"
         v-model="userResults"
       />
+      <UsersUpdateMordal
+        v-if="!isNewResult"
+        :input-users="userResults"
+        :result-id="resultId"
+      />
+      <v-btn
+        v-if="isNewResult"
+        class="deep-orange accent-3"
+        dark
+        @click.stop.prevent="result"
+      >結果作成</v-btn>
     </div>
-    <v-btn
-      class="deep-orange accent-3"
-      dark
-      @click.stop.prevent="result">結果作成</v-btn>
-    子コンポーネントから受け取ったユーザ{{ users }}
   </div>
 </template>
 
@@ -40,6 +45,7 @@ import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
 import BoardGameSelectMordal from '~/components/record/boardGameSelectMordal';
 import PlaceSelectMordal from '~/components/record/placeSelectMordal';
 import UsersSelectMordal from '~/components/record/usersSelectMordal';
+import UsersUpdateMordal from '~/components/record/usersUpdateMordal';
 
 export default {
   name: 'Result',
@@ -47,6 +53,7 @@ export default {
     'BoardGameSelectMordal': BoardGameSelectMordal,
     'PlaceSelectMordal': PlaceSelectMordal,
     'UsersSelectMordal': UsersSelectMordal,
+    'UsersUpdateMordal': UsersUpdateMordal,
   },
   data() {
     return {
@@ -56,11 +63,10 @@ export default {
       boardGameTitle: '未入力',
       placeId: 0,
       placeName: '未入力',
-      score: '',
-      comment: '',
       boardGame: null,
       place: null,
       userResults: [],
+      isNewResult: true,
     };
   },
   asyncData({ query }, callback) {
@@ -86,6 +92,7 @@ export default {
             placeId: result.placeId,
             placeName: result.placeName,
             userResults: userList,
+            isNewResult: false,
           })
         });
     }
@@ -97,7 +104,7 @@ export default {
       let sendPlaceId = (this.place === null) ? this.placeId : this.place.id;
       let sendPlaceName = (this.place === null) ? this.placeName : this.place.name;
 
-      Result.result(this.resultId, sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, this.score, this.comment).then(
+      Result.result(sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, this.userResults).then(
         (response) => {
           // eslint-disable-next-line
           console.log(response);
