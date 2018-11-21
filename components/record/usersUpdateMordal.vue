@@ -207,16 +207,19 @@ export default {
     save () {
       if (this.editedIndex > -1) {
         UserResult.updateResult(this.editedItem.id, this.resultId, this.editedItem.userId, this.editedItem.score, this.editedItem.comment);
-        Object.assign(this.users[this.editedIndex], this.editedItem)
+        Object.assign(this.users[this.editedIndex], this.editedItem);
+        this.close();
+        this.$emit('input', this.users);
       } else {
         UserResult.newResult(this.resultId, this.editedItem.userId, this.editedItem.score, this.editedItem.comment)
           .then((response) => {
             this.editedItem.id = response.data.result.id;
             this.users.push(this.editedItem);
+            this.close();
             this.$emit('input', this.users);
           });
+        // TODO: elseの時の処理
       }
-      this.close();
     },
 
     selectUser(val) {
