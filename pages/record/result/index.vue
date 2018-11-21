@@ -56,12 +56,13 @@ export default {
     'UsersUpdateMordal': UsersUpdateMordal,
   },
   data() {
+    console.log(this.$store.state);
     return {
       nextlink: '/record',
       parentId: -1,
       boardGameId: 0,
       boardGameTitle: '未入力',
-      placeId: 0,
+      placeId: '',
       placeName: '未入力',
       boardGame: null,
       place: null,
@@ -69,11 +70,13 @@ export default {
       isNewResult: true,
     };
   },
-  asyncData({ query }, callback) {
+  asyncData({ query, store }, callback) {
     // 親IDが指定されていない場合はデフォルト値を使う.
     if(typeof(query.resultId) === "undefined") {
       callback(null, {
         resultId: -1,
+        placeId: store.getters['userDetail/checkIn'].id,
+        placeName: store.getters['userDetail/checkIn'].name,
       });
       return null;
     }

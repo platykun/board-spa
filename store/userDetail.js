@@ -2,12 +2,16 @@ import api from '~/plugins/js/helper/api';
 
 export const state = () => ({
   checkIn: '',
+  checkInId: -1,
   myHistory: [],
   nearHistory: [],
   allHistory: [],
 });
 
 export const getters = {
+  checkInId(state) {
+    return state.checkInId;
+  },
   checkIn(state) {
     return state.checkIn;
   },
@@ -23,8 +27,9 @@ export const getters = {
 };
 
 export const mutations = {
-  setCheckIn(state, checkIn) {
+  setCheckIn(state, checkIn, checkInId) {
     state.checkIn = checkIn;
+    state.checkInId = checkInId;
   },
   setDetail(state, detail) {
     state.checkIn = detail.checkIn;
@@ -43,7 +48,7 @@ export const actions = {
       }
     );
   },
-  updateCheckIn({ commit }, checkin) {
-    commit('setCheckIn', checkin);
+  updateCheckIn({ commit }, checkin, checkInId) {
+    commit('setCheckIn', checkin, checkInId);
   },
 };

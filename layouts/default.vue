@@ -4,7 +4,7 @@
       dark
       color="blue-grey darken-1"
       clipped="true">
-      <v-toolbar-side-icon to="/">
+      <v-toolbar-side-icon :to="logoLink">
         <v-icon>ballot</v-icon>
       </v-toolbar-side-icon>
       <v-toolbar-title 
@@ -26,7 +26,7 @@
             <v-icon>person</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>LoginedUserName</v-list-tile-title>
+            <v-list-tile-title> {{ loginUserName }} </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <template v-for="(item, index) in items">
@@ -109,5 +109,13 @@
         ]
       };
     },
+    computed: {
+      logoLink() {
+        return localStorage.logined ? '/record' : '/';
+      },
+      loginUserName() {
+        return localStorage.logined ? localStorage.userId : '未ログイン';
+      },
+    }
   };
 </script>

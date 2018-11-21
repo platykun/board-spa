@@ -16,7 +16,7 @@
                 <h2
                   v-if="item.showCheckIn"
                   class="blue-grey--text text--darken-1 text-overflow-ellipsis">
-                  {{ checkIn }}
+                  {{ checkIn.name }}
                 </h2>
                 <h2
                   v-else
