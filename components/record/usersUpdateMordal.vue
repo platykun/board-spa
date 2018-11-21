@@ -213,10 +213,10 @@ export default {
           .then((response) => {
             this.editedItem.id = response.data.result.id;
             this.users.push(this.editedItem);
+            this.$emit('input', this.users);
           });
       }
       this.close();
-      this.$emit('input', this.users);
     },
 
     selectUser(val) {
