@@ -22,7 +22,9 @@
     "nuxt": "^2.1.0",
     "vee-validate": "^2.1.0-beta.9",
     "vue-awesome": "^3.1.3",
-    "vuetify": "^1.2.6"
+    "vuetify": "^1.2.6",
+    "vue": "latest",
+    "vue-meta": "latest"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

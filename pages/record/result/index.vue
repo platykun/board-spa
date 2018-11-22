@@ -31,7 +31,7 @@
       />
       <v-btn
         v-if="isNewResult"
-        class="deep-orange accent-3"
+        class="accent"
         dark
         @click.stop.prevent="result"
       >結果作成</v-btn>

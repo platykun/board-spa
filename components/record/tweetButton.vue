@@ -2,7 +2,7 @@
   <div>
     <v-btn
       :href="twitterLink()"
-      class="deep-orange accent-3"
+      class="accent"
       data-text="custom share text"
       dark>
       <v-icon>fa-twitter</v-icon>

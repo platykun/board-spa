@@ -2,7 +2,7 @@
   <div>
     <v-toolbar
       dark
-      color="blue-grey darken-1"
+      color="primary"
       clipped="true">
       <v-toolbar-side-icon :to="logoLink">
         <v-icon>ballot</v-icon>
@@ -63,7 +63,7 @@
         tile
         dark
       >
-        <v-card-actions class="blue-grey darken-1 justify-center">
+        <v-card-actions class="primary justify-center">
           contact
           <v-btn
             v-for="icon in footerIcons"

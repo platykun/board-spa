@@ -15,12 +15,12 @@
               <v-list-tile-content>
                 <h2
                   v-if="item.showCheckIn"
-                  class="blue-grey--text text--darken-1 text-overflow-ellipsis">
+                  class="secondary--text text-overflow-ellipsis">
                   {{ checkIn.name }}
                 </h2>
                 <h2
                   v-else
-                  class="blue-grey--text text--darken-1">
+                  class="secondary--text">
                   {{ item.title }}
                 </h2>
                 <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
@@ -28,7 +28,7 @@
               <v-list-tile-action>
                 <v-btn
                   :to="item.to"
-                  color="deep-orange accent-3"
+                  color="accent"
                   dark>
                   <v-icon>{{ item.icon }}</v-icon>
                   {{ item.icontitle }}
@@ -46,7 +46,7 @@
       v-model="active_tab"
       color="blue-grey lighten-1"
       dark
-      slider-color="deep-orange accent-3"
+      slider-color="accent"
     >
       <v-tab
         v-for="tab in tabs"
@@ -61,7 +61,7 @@
         :key="tab + 'v-tab-item'"
       >
         <div v-show="tab.action === 'myHistory'">
-          <h2 class="blue-grey--text text--darken-1">自分のプレイ履歴</h2>
+          <h2 class="secondary--text">自分のプレイ履歴</h2>
           <recordCard
             v-for="history in myHistory"
             :key="history"
@@ -75,7 +75,7 @@
           />
         </div>
         <div v-show="tab.action === 'nearHistory'">
-          <h2 class="blue-grey--text text--darken-1">チェックイン場所でのプレイ履歴</h2>
+          <h2 class="secondary--text">チェックイン場所でのプレイ履歴</h2>
           <recordCard
             v-for="history in nearHistory"
             :key="history"
@@ -89,7 +89,7 @@
           />
         </div>
         <div v-show="tab.action === 'allHistory'">
-          <h2 class="blue-grey--text text--darken-1">すべてのプレイ履歴</h2>
+          <h2 class="secondary--text">すべてのプレイ履歴</h2>
           <recordCard
             v-for="history in allHistory"
             :key="history"

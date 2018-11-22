@@ -16,7 +16,7 @@
           <h1 class="white--text mb-2 display-1 text-xs-center">Board Game Management</h1>
           <div class="subheading mb-3 text-xs-center">This is an application to record the board game you played</div>
           <v-btn
-            class="deep-orange accent-3 mt-5"
+            class="accent mt-5"
             dark
             large
             to="/login"
@@ -57,7 +57,7 @@
                   <v-card-text class="text-xs-center">
                     <v-icon
                       x-large
-                      class="deep-orange--text text--accent-3">{{ description.icon }}</v-icon>
+                      class="accent--text">{{ description.icon }}</v-icon>
                   </v-card-text>
                   <v-card-title
                     primary-title
@@ -134,7 +134,7 @@
               <v-list class="transparent">
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                    <v-icon class="secondary--text">phone</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>**********</v-list-tile-title>
@@ -142,7 +142,7 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="blue--text text--lighten-2">place</v-icon>
+                    <v-icon class="secondary--text">place</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>Chicago, US</v-list-tile-title>
@@ -150,7 +150,7 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="blue--text text--lighten-2">email</v-icon>
+                    <v-icon class="secondary--text">email</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>a@a.a</v-list-tile-title>

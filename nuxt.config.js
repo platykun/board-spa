@@ -28,17 +28,17 @@ module.exports = {
   /*
   ** Global CSS
   */
-  // css: [
-  //   '~/assets/style/app.styl'
-  // ],
+  css: [
+    '~/assets/style/appTest.styl'
+  ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~plugins/vee-validate.js', ssr: true},
+    {src: '~plugins/vee-validate.js', ssr: false},
     '~plugins/vue-awesome.js',
-    '~/plugins/vuetify.js',
+    '~plugins/vuetify.js',
   ],
 
   /*
@@ -57,12 +57,21 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+  vuetify: {
+    // Vuetify の設定はここに書く
+    theme: {
+      primary: '#3f51b5',
+      secondary: '#b0bec5',
+      accent: '#ffea00',
+      error: '#b71c1c'
+    }
+  },
 
   /*
   ** Build configuration
   */
   build: {
-    vendor: ['vue-awesome'],
+    vendor: ['vue-awesome', 'vuetify', 'vee-validate'],
     // vendor: [
     //   '~plugins/vuetifyPlugin.js'
     // ],
@@ -97,14 +106,5 @@ module.exports = {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8090',
     API_URL: process.env.BASE_URL || 'http://localhost:8090'
-  },
-  vuetify: {
-    // Vuetify の設定はここに書く
-    theme: {
-      primary: '#3f51b5',
-      secondary: '#b0bec5',
-      accent: '#8c9eff',
-      error: '#b71c1c'
-    }
   },
 }

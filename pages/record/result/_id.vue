@@ -7,9 +7,9 @@
       <v-card-title>
         <div>
           <span class="grey--text">ボードゲーム名</span>
-          <h2 class="blue-grey--text text--darken-1">{{ boardGameTitle }}</h2>
+          <h2 class="secondary--text">{{ boardGameTitle }}</h2>
           <span class="grey--text">場所</span>
-          <h2 class="blue-grey--text text--darken-1">{{ placeName }}</h2>
+          <h2 class="secondary--text">{{ placeName }}</h2>
         </div>
       </v-card-title>
     </v-card>
@@ -22,7 +22,7 @@
       <v-card-title>
         <div>
           <span class="grey--text">ユーザ名</span>
-          <h2 class="blue-grey--text text--darken-1">{{ user.userId }}</h2>
+          <h2 class="secondary--text">{{ user.userId }}</h2>
         </div>
         <v-spacer/>
         <div>
@@ -32,16 +32,16 @@
       <v-card-text>
         <div>
           <span class="grey--text">スコア:</span>
-          <h3 class="blue-grey--text text--darken-1">{{ user.score }}</h3>
+          <h3 class="secondary--text">{{ user.score }}</h3>
           <span class="grey--text">コメント</span>
-          <h3 class="blue-grey--text text--darken-1">{{ user.comment }}</h3>
+          <h3 class="secondary--text">{{ user.comment }}</h3>
         </div>
       </v-card-text>
     </v-card>
 
     <v-btn
       :to="{ path: '/record/result', query: { resultId: resultId}}"
-      class="deep-orange accent-3"
+      class="accent"
       dark>
       <v-icon>add</v-icon>
       編集
@@ -57,6 +57,9 @@ import moment from 'moment';
 
 export default {
   name: 'Result',
+  validate ({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   filters: {
     moment: function (date) {
       return moment(date).format('YYYY/MM/DD HH:mm');

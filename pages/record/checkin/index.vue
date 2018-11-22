@@ -1,8 +1,8 @@
 <template>
   <div class="index">
     <div class="flex xs12 sm6 offset-sm3 mt-3">
-      <h2 class="blue-grey--text text--darken-1">
-        <v-icon class="blue-grey--text text--darken-1">location_on</v-icon>
+      <h2 class="secondary--text">
+        <v-icon class="secondary--text">location_on</v-icon>
         {{ msg }}
       </h2>
       <v-text-field

@@ -5,7 +5,7 @@
   >
     <div slot="activator">
       <v-btn
-        class="deep-orange accent-3"
+        class="accent"
         dark
       >ボードゲーム選択</v-btn>
     </div>

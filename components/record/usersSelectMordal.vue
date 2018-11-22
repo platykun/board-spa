@@ -5,7 +5,7 @@
       max-width="500px">
       <div slot="activator">
         <v-btn
-          class="mb-2 deep-orange accent-3"
+          class="mb-2 accent"
           dark>参加者追加</v-btn>
       </div>
       <v-card>
@@ -58,11 +58,11 @@
         <v-card-actions>
           <v-spacer/>
           <v-btn
-            color="deep-orange darken-1"
+            color="secondary"
             flat
             @click="close">Cancel</v-btn>
           <v-btn
-            class="deep-orange accent-3"
+            class="accent"
             flat
             dark
             @click="save">Save</v-btn>

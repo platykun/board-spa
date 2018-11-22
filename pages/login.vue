@@ -14,7 +14,7 @@
     >
       <v-flex xs12>
         <v-card
-          color="blue-grey darken-1"
+          color="primary"
           class="white--text">
           <v-card-title primary-title>
             <div class="headline">Login</div>
@@ -43,7 +43,7 @@
           </v-card-content>
           <v-card-actions>
             <v-btn
-              class="deep-orange accent-3"
+              class="accent"
               dark
               @click.stop.prevent="sendLogin">ログイン</v-btn>
             <v-spacer/>

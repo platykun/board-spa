@@ -14,7 +14,7 @@
 
         <v-card-actions>
           <v-btn
-            class="deep-orange--text accent-3--text"
+            class="accent--text"
             flat
             to="/record/checkin">
             <v-icon>arrow_back_ios</v-icon>
@@ -22,7 +22,7 @@
           </v-btn>
           <v-spacer/>
           <v-btn
-            class="deep-orange accent-3"
+            class="accent"
             dark
             large
             @click="checkIn()"
@@ -41,6 +41,9 @@ import Place from '~/plugins/js/interface/Place.js';
 
 export default {
   name: 'Checkin',
+  validate ({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   data() {
     return {
       place: '',
