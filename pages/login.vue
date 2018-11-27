@@ -21,22 +21,12 @@
           </v-card-title>
           <v-card-content>
             <div class="mx-2">
-              <v-text-field
-                v-validate="'required|max:10'"
+              <UserIdForm
                 v-model="userId"
-                :error-messages="errors"
-                name="userId"
-                type="text"
-                label="ユーザID"
                 dark
               />
-              <v-text-field
-                v-validate="'required'"
+              <PasswordForm
                 v-model="password"
-                :error-messages="errors"
-                name="password"
-                type="password"
-                label="パスワード"
                 dark
               />
             </div>
@@ -62,8 +52,14 @@
 
 <script>
 import Login from '~/plugins/js/interface/Login';
+import UserIdForm from '~/components/form/userIdForm';
+import PasswordForm from '~/components/form/passwordForm';
 
 export default {
+  components: {
+    'UserIdForm': UserIdForm,
+    'PasswordForm': PasswordForm,
+  },
   data() {
     return {
       msg: 'Welcome to login page. you can enter admin/password',

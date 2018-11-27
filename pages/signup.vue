@@ -14,36 +14,26 @@
     >
       <v-flex xs12>
         <v-card
-          color="blue-grey darken-1"
+          color="primary"
           class="white--text">
           <v-card-title primary-title>
             <div class="headline">signup</div>
           </v-card-title>
           <v-card-content>
             <div class="mx-2">
-              <v-text-field
-                v-validate="'required|max:10'"
+              <UserIdForm
                 v-model="userId"
-                :error-messages="errors"
-                name="userId"
-                type="text"
-                label="ユーザID"
                 dark
               />
-              <v-text-field
-                v-validate="'required'"
+              <PasswordForm
                 v-model="password"
-                :error-messages="errors"
-                name="password"
-                type="password"
-                label="パスワード"
                 dark
               />
             </div>
           </v-card-content>
           <v-card-actions>
             <v-btn
-              class="deep-orange accent-3"
+              class="accent"
               dark
               @click.stop.prevent="createUser">作成</v-btn>
             <v-spacer/>
@@ -63,8 +53,14 @@
 <script>
 import Signup from '~/plugins/js/interface/Signup';
 import Login from '~/plugins/js/interface/Login';
+import UserIdForm from '~/components/form/userIdForm';
+import PasswordForm from '~/components/form/passwordForm';
 
 export default {
+  components: {
+    'UserIdForm': UserIdForm,
+    'PasswordForm': PasswordForm,
+  },
   data() {
     return {
       msg: 'Welcome to signup page.',
@@ -74,6 +70,22 @@ export default {
       userName: '',
       password: '',
     };
+  },
+  watch: {
+    userId(val) {
+      if(val === '')return;
+
+      Signup.isAvailableUser(val).then(
+        (response) => {
+          const result = response.data.result;
+          if(result == false) {
+            this.errorMsg = '記載されたユーザIDはすでに使われています.'
+          } else {
+            this.errorMsg = null;
+          }
+        }
+      )
+    }
   },
   methods: {
     createUser() {
@@ -88,11 +100,12 @@ export default {
               localStorage.authList = response.data.authList;
               localStorage.logined = true;
               this.$router.push({path: '/tutorial'});
-            }
-          );
+            }).catch((error) => {
+              this.errorMsg = 'ユーザ作成後のログインに失敗しました. reason:' + error.message;
+          });
         })
         .catch((error) => {
-          this.errorMsg = 'ログインに失敗しました. reason:' + error.message;
+          this.errorMsg = 'ユーザの作成に失敗しました. reason:' + error.message;
         });
     },
   },
