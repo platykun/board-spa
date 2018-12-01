@@ -67,6 +67,13 @@ module.exports = {
       error: '#b71c1c'
     }
   },
+  workbox: {
+    dev: true,
+  },
+  manifest: {
+    name: 'BoardGameManagement',
+    lang: 'ja',
+  },
 
   /*
   ** Build configuration
@@ -107,12 +114,5 @@ module.exports = {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8090',
     API_URL: process.env.BASE_URL || 'http://localhost:8090'
-  },
-  workbox: {
-    dev: true,
-  },
-  manifest: {
-    name: 'BoardGameManagement',
-    lang: 'ja',
   },
 }
