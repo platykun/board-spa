@@ -48,6 +48,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     '@nuxtjs/vuetify',
+    '@nuxtjs/pwa',
     //  not use
     // '@nuxtjs/dotenv',
   ],
@@ -106,5 +107,12 @@ module.exports = {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8090',
     API_URL: process.env.BASE_URL || 'http://localhost:8090'
+  },
+  workbox: {
+    dev: true,
+  },
+  manifest: {
+    name: 'BoardGameManagement',
+    lang: 'ja',
   },
 }
