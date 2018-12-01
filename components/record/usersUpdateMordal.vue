@@ -5,8 +5,13 @@
       max-width="500px">
       <div slot="activator">
         <v-btn
-          class="mb-2 accent"
-          dark>参加者追加</v-btn>
+          outline
+          round
+          class="mb-2 accent accent--text"
+          dark>
+          <v-icon>add</v-icon>
+          参加者追加
+        </v-btn>
       </div>
       <v-card>
         <v-card-title>

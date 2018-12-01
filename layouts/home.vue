@@ -56,23 +56,27 @@
       </v-list>
     </v-navigation-drawer>
     <nuxt/>
-    <v-bottom-nav
-      value="true"
-      fixed
-      app
-      color="primary"
-    >
-      <template v-for="navBottom in navBottoms">
-        <v-btn
-          :to="navBottom.link"
-          :key="navBottom.name"
-          dark
-        >
-          <span>{{ navBottom.name }}</span>
-          <v-icon>{{ navBottom.icon }}</v-icon>
-        </v-btn>
-      </template>
-    </v-bottom-nav>
+    <v-footer class="mt-5">
+      <v-card
+        class="flex"
+        flat
+        tile
+        dark
+      >
+        <v-card-actions class="primary justify-center">
+          contact
+          <v-btn
+            v-for="icon in footerIcons"
+            :key="icon"
+            :href="icon.link"
+            class="mx-3"
+            icon
+          >
+            <v-icon> {{ icon.name }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-footer>
   </div>
 </template>
 
@@ -102,13 +106,7 @@
         footerIcons: [
           { name: 'fa-twitter-square', link: 'https://twitter.com/platykun'},
           { name: 'fa-github-square', link: 'https://github.com/platykun'},
-        ],
-        navBottoms: [
-          { name: "Top", icon: "home", link: '/record'},
-          { name: "CheckIn", icon: "location_on", link: '/record/checkin'},
-          { name: "Record", icon: "note_add", link: '/record/result'},
-          { name: "Tweet", icon: "fa-twitter", link: '/share/tweet'},
-        ],
+        ]
       };
     },
     computed: {

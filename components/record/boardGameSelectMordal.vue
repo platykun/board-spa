@@ -5,9 +5,13 @@
   >
     <div slot="activator">
       <v-btn
-        class="accent"
-        dark
-      >ボードゲーム選択</v-btn>
+        outline
+        round
+        class="accent accent--text"
+      >
+        <v-icon>library_add</v-icon>
+        ボードゲーム選択
+      </v-btn>
     </div>
     <v-card>
       <v-card-title>Select BoardGame</v-card-title>

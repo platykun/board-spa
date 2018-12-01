@@ -5,9 +5,14 @@
   >
     <div slot="activator">
       <v-btn
-        class="accent"
+        outline
+        round
+        class="accent accent--text"
         dark
-      >場所選択</v-btn>
+      >
+        <v-icon>library_add</v-icon>
+        場所選択
+      </v-btn>
     </div>
     <v-card>
       <v-card-title>Select Place</v-card-title>

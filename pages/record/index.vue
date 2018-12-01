@@ -1,47 +1,5 @@
 <template>
   <div class="record">
-    <v-flex
-      xs12
-      sm6
-      offset-sm3
-      py-3>
-      <v-card>
-        <v-list three-line>
-          <template v-for="(item, index) in items">
-            <v-list-tile
-              :key="item.title"
-              avatar
-            >
-              <v-list-tile-content>
-                <h2
-                  v-if="item.showCheckIn"
-                  class="secondary--text text-overflow-ellipsis">
-                  {{ checkIn.name }}
-                </h2>
-                <h2
-                  v-else
-                  class="secondary--text">
-                  {{ item.title }}
-                </h2>
-                <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
-              </v-list-tile-content>
-              <v-list-tile-action>
-                <v-btn
-                  :to="item.to"
-                  color="accent"
-                  dark>
-                  <v-icon>{{ item.icon }}</v-icon>
-                  {{ item.icontitle }}
-                </v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
-            <v-divider
-              v-if="index + 1 < items.length"
-              :key="index"/>
-          </template>
-        </v-list>
-      </v-card>
-    </v-flex>
     <v-tabs
       v-model="active_tab"
       color="blue-grey lighten-1"

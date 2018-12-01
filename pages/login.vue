@@ -56,6 +56,7 @@ import UserIdForm from '~/components/form/userIdForm';
 import PasswordForm from '~/components/form/passwordForm';
 
 export default {
+  layout: 'home',
   components: {
     'UserIdForm': UserIdForm,
     'PasswordForm': PasswordForm,
