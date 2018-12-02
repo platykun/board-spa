@@ -1,44 +1,45 @@
 <template>
-  <div class="result">
-    <h1>{{ msg }}</h1>
-    {{ $route.params.id }}
-
-    <v-card class="ma-2">
+  <div class="container">
+    <v-card>
       <v-card-title>
         <div>
-          <span class="grey--text">ボードゲーム名</span>
-          <h2 class="secondary--text">{{ boardGameTitle }}</h2>
-          <span class="grey--text">場所</span>
-          <h2 class="secondary--text">{{ placeName }}</h2>
+          <div class="secondary--text caption">ボードゲーム名</div>
+          <p class="primary--text title">{{ boardGameTitle }}</p>
+          <div class="secondary--text caption">場所</div>
+          <p class="primary--text title">{{ placeName }}</p>
         </div>
       </v-card-title>
     </v-card>
 
-    <h2>記録一覧</h2>
-    <v-card
-      v-for="user in userList"
-      :key="user"
-    >
-      <v-card-title>
-        <div>
-          <span class="grey--text">ユーザ名</span>
-          <h2 class="secondary--text">{{ user.userId }}</h2>
-        </div>
-        <v-spacer/>
-        <div>
-          <span class="grey--text">{{ user.create | moment }}</span>
-        </div>
-      </v-card-title>
-      <v-card-text>
-        <div>
-          <span class="grey--text">スコア:</span>
-          <h3 class="secondary--text">{{ user.score }}</h3>
-          <span class="grey--text">コメント</span>
-          <h3 class="secondary--text">{{ user.comment }}</h3>
-        </div>
-      </v-card-text>
-    </v-card>
+    <h3 class="primary--text title mt-3 mb-2">記録一覧</h3>
 
+    <v-card>
+      <v-list three-line>
+        <template v-for="user in userList">
+          <v-list-tile
+            :key="user.userId"
+          >
+            <v-list-tile-content>
+              <div class="secondary--text body-1">
+                user:
+                <span class="primary--text title">{{ user.userId }}</span>
+              </div>
+              <div class="secondary--text body-1">
+                score:
+                <span class="primary--text title">{{ user.score }}</span>
+              </div>
+              <span class="primary--text caption">{{ user.comment }}</span>
+
+            </v-list-tile-content>
+            <v-list-action>
+              <v-spacer/>
+              <span class="secondary--text caption">{{ user.create | moment }}</span>
+            </v-list-action>
+          </v-list-tile>
+          <v-divider :key="user.userId + 'div'"/>
+        </template>
+      </v-list>
+    </v-card>
     <v-btn
       :to="{ path: '/record/result', query: { resultId: resultId}}"
       class="accent"
@@ -70,7 +71,6 @@ export default {
   },
   data() {
     return {
-      msg: 'Welcome to Result page',
     };
   },
   asyncData({app, query}, callback) {
@@ -86,16 +86,6 @@ export default {
         })
       });
   },
-  methods: {
-    addButton() {
-      return {
-        path: '/record/result',
-        params: {
-          resultId: this.resultId,
-        },
-      };
-    }
-  }
 };
 </script>
 <style scoped>

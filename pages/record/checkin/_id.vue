@@ -1,5 +1,5 @@
 <template>
-  <div class="result">
+  <div class="container">
     <v-flex 
       xs12 
       sm6 

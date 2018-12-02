@@ -17,6 +17,7 @@
       <v-tab-item
         v-for="tab in tabs"
         :key="tab + 'v-tab-item'"
+        class="container"
       >
         <div v-show="tab.action === 'myHistory'">
           <h2 class="secondary--text">自分のプレイ履歴</h2>
@@ -33,7 +34,7 @@
           />
         </div>
         <div v-show="tab.action === 'nearHistory'">
-          <h2 class="secondary--text">チェックイン場所でのプレイ履歴</h2>
+          <h2 class="secondary--text mt-3">付近のプレイ履歴</h2>
           <recordCard
             v-for="history in nearHistory"
             :key="history"
@@ -47,7 +48,7 @@
           />
         </div>
         <div v-show="tab.action === 'allHistory'">
-          <h2 class="secondary--text">すべてのプレイ履歴</h2>
+          <h2 class="secondary--text mt-3">すべてのプレイ履歴</h2>
           <recordCard
             v-for="history in allHistory"
             :key="history"

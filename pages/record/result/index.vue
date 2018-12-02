@@ -1,40 +1,45 @@
 <template>
-  <div class="result">
-    <div class="flex xs12 sm6 offset-sm3">
-      <h2>プレイ情報</h2>
-      <v-text-field
-        v-model="resultId"
-        label="結果ID"/>
+  <div class="container">
+    <div class="flex xs12 sm8 offset-sm2">
+      <h1 class="display-1 primary--text">
+        <p>{{ title() }}</p>
+      </h1>
       <div>
-        <h4>ボードゲーム名</h4>
-        <span>{{ boardGame === null ? boardGameTitle : boardGame.title }}</span>
-        <BoardGameSelectMordal
-          v-if="isNewResult"
-          v-model="boardGame"/>
+        <div class="secondary--text caption">ボードゲーム名</div>
+        <p class="primary--text body-2">
+          <span> {{ boardGame === null ? boardGameTitle : boardGame.title }} </span>
+          <BoardGameSelectMordal
+            v-if="isNewResult"
+            v-model="boardGame"/>
+        </p>
       </div>
       <div>
-        <h4>場所名</h4>
-        <span>{{ place === null ? placeName : place.name }}</span>
-        <PlaceSelectMordal
-          v-if="isNewResult"
-          v-model="place"/>
+        <div class="secondary--text caption">場所名</div>
+        <p class="primary--text body-2">
+          <span>{{ place === null ? placeName : place.name }}</span>
+          <PlaceSelectMordal
+            v-if="isNewResult"
+            v-model="place"/>
+        </p>
       </div>
-      <h2>結果詳細</h2>
-      <UsersSelectMordal
-        v-if="isNewResult"
-        v-model="userResults"
-      />
-      <UsersUpdateMordal
-        v-if="!isNewResult"
-        :input-users="userResults"
-        :result-id="resultId"
-      />
-      <v-btn
-        v-if="isNewResult"
-        class="accent"
-        dark
-        @click.stop.prevent="result"
-      >結果作成</v-btn>
+      <div>
+        <div class="secondary--text caption">結果詳細</div>
+        <UsersSelectMordal
+          v-if="isNewResult"
+          v-model="userResults"
+        />
+        <UsersUpdateMordal
+          v-if="!isNewResult"
+          :input-users="userResults"
+          :result-id="resultId"
+        />
+        <v-btn
+          v-if="isNewResult"
+          class="accent"
+          dark
+          @click.stop.prevent="result"
+        >結果作成</v-btn>
+      </div>
     </div>
   </div>
 </template>
@@ -58,8 +63,6 @@ export default {
   data() {
     console.log(this.$store.state);
     return {
-      nextlink: '/top',
-      parentId: -1,
       boardGameId: 0,
       boardGameTitle: '未入力',
       placeId: '',
@@ -74,6 +77,7 @@ export default {
     // 親IDが指定されていない場合はデフォルト値を使う.
     if(typeof(query.resultId) === "undefined") {
       callback(null, {
+        isNewCreate: true,
         resultId: -1,
         placeId: store.getters['userDetail/checkIn'].id,
         placeName: store.getters['userDetail/checkIn'].name,
@@ -89,6 +93,7 @@ export default {
           let userList = response.data.result.userList;
           let result = response.data.result;
           callback(null, {
+            isNewCreate: false,
             resultId: resultId,
             boardGameId: result.boardGameId,
             boardGameTitle: result.boardGameTitle,
@@ -101,6 +106,9 @@ export default {
     }
   },
   methods: {
+    title() {
+      return this.isNewCreate ? "記録 新規作成" : "記録 編集";
+    },
     result() {
       let sendBoardGameId = (this.boardGame === null) ? this.boardGameId : this.boardGame.id;
       let sendBoardGameTitle = (this.boardGame === null) ? this.boardGameTitle : this.boardGame.title;
@@ -109,13 +117,9 @@ export default {
 
       Result.result(sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, this.userResults).then(
         (response) => {
-          // eslint-disable-next-line
-          console.log(response);
           this.$router.push({ path: '/top' });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.log(error);
           this.msg = '登録に失敗しました.';
         });
     },

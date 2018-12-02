@@ -1,6 +1,6 @@
 <template>
-  <div class="index">
-    <div class="flex xs12 sm6 offset-sm3 mt-3">
+  <div class="container">
+    <div class="flex xs12 sm6 offset-sm3">
       <h2 class="secondary--text">
         <v-icon class="secondary--text">location_on</v-icon>
         {{ msg }}
