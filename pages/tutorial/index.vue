@@ -4,7 +4,7 @@
       <h2>チュートリアル</h2>
     </div>
     <v-btn
-      to="/record"
+      to="/top"
     >
       完了
     </v-btn>

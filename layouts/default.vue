@@ -56,6 +56,7 @@
       </v-list>
     </v-navigation-drawer>
     <nuxt/>
+    <div id="v-bottom-nav-space" />
     <v-bottom-nav
       value="true"
       fixed
@@ -88,7 +89,7 @@
           { action: '/login', title: 'ログイン', icon: 'home'},
           { divider: true },
           { header: '記録' },
-          { action: '/record', title: 'トップ', icon: 'home' },
+          { action: '/top', title: 'トップ', icon: 'home' },
           { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
           { action: '/record/result', title: '結果入力', icon: 'note_add' },
           { divider: true },
@@ -104,7 +105,7 @@
           { name: 'fa-github-square', link: 'https://github.com/platykun'},
         ],
         navBottoms: [
-          { name: "Top", icon: "home", link: '/record'},
+          { name: "Top", icon: "home", link: '/top'},
           { name: "CheckIn", icon: "location_on", link: '/record/checkin'},
           { name: "Record", icon: "note_add", link: '/record/result'},
           { name: "Tweet", icon: "fa-twitter", link: '/share/tweet'},
@@ -113,7 +114,7 @@
     },
     computed: {
       logoLink() {
-        return localStorage.logined ? '/record' : '/';
+        return localStorage.logined ? '/top' : '/';
       },
       loginUserName() {
         return localStorage.logined ? localStorage.userId : '未ログイン';
@@ -121,3 +122,8 @@
     }
   };
 </script>
+<style scoped>
+  #v-bottom-nav-space {
+    height: 60px;
+  }
+</style>

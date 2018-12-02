@@ -58,7 +58,7 @@ export default {
   data() {
     console.log(this.$store.state);
     return {
-      nextlink: '/record',
+      nextlink: '/top',
       parentId: -1,
       boardGameId: 0,
       boardGameTitle: '未入力',
@@ -111,7 +111,7 @@ export default {
         (response) => {
           // eslint-disable-next-line
           console.log(response);
-          this.$router.push({ path: '/record' });
+          this.$router.push({ path: '/top' });
         })
         .catch((error) => {
           // eslint-disable-next-line

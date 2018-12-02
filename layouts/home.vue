@@ -92,7 +92,7 @@
           { action: '/login', title: 'ログイン', icon: 'home'},
           { divider: true },
           { header: '記録' },
-          { action: '/record', title: 'トップ', icon: 'home' },
+          { action: '/top', title: 'トップ', icon: 'home' },
           { action: '/record/checkin', title: 'チェックイン', icon: 'location_on' },
           { action: '/record/result', title: '結果入力', icon: 'note_add' },
           { divider: true },
@@ -111,7 +111,7 @@
     },
     computed: {
       logoLink() {
-        return localStorage.logined ? '/record' : '/';
+        return localStorage.logined ? '/top' : '/';
       },
       loginUserName() {
         return localStorage.logined ? localStorage.userId : '未ログイン';

@@ -120,7 +120,7 @@ export default {
     }),
   },
   async asyncData({ route, store }) {
-    console.log("record/index.vue asyncData called");
+    console.log("record/top.vue asyncData called");
     store.dispatch('userDetail/addUserDetail');
   },
 };

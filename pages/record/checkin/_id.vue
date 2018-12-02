@@ -60,7 +60,7 @@ export default {
   methods: {
     checkIn() {
       Place.checkIn(this.place.id);
-      this.$router.push({ path: '/record' });
+      this.$router.push({ path: '/top' });
       this.store.dispatch("userDetail/updateCheckIn", this.place);
     },
   }
