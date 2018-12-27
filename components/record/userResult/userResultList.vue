@@ -64,7 +64,7 @@
 
 <script>
 import UserResultModal from '~/components/record/userResult/userResultModal';
-import UpdateUserResultModal from '~/components/record/userResult/UPdateUserResultModal';
+import UpdateUserResultModal from '~/components/record/userResult/UpdateUserResultModal';
 
 export default {
   components: {
