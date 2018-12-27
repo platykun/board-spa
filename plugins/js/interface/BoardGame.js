@@ -11,4 +11,16 @@ export default class BoardGame {
   static findAllPlace() {
     return api.requestWithToken('get', '/boardGame/find_all/0');
   }
+
+  // ボードゲームを登録する
+  static regist(title, player, overview) {
+    return api.requestWithToken(
+        'put',
+        '/boardgame',
+        {
+          title: title,
+          player: player,
+          overview: overview
+        });
+  }
 }

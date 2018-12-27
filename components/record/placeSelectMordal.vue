@@ -15,7 +15,17 @@
       </v-btn>
     </div>
     <v-card>
-      <v-card-title>Select Place</v-card-title>
+      <v-card-title>
+        Select Place
+        <v-spacer/>
+        <v-btn
+                outline
+                round
+                class="accent accent--text"
+                to="/register/place">
+          見つからない場合
+        </v-btn>
+      </v-card-title>
       <v-divider/>
       <v-text-field
         v-model="placeName"

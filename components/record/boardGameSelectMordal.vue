@@ -14,7 +14,17 @@
       </v-btn>
     </div>
     <v-card>
-      <v-card-title>Select BoardGame</v-card-title>
+      <v-card-title>
+        Select BoardGame
+        <v-spacer/>
+        <v-btn
+                outline
+                round
+                class="accent accent--text"
+                to="/register/boardGame">
+          見つからない場合
+        </v-btn>
+      </v-card-title>
       <v-divider/>
       <v-text-field
         v-model="boardGameTitle"
