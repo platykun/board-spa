@@ -81,6 +81,8 @@
 </template>
 
 <script>
+  import LoginUserStore from '~/plugins/js/store/LoginUserStore';
+
   export default {
     data() {
       return {
@@ -101,7 +103,7 @@
           { divider: true },
           { header: 'other' },
           { action: '/tutorial', title: 'チュートリアル', icon: 'contact_support' },
-          { divider: true },
+          { action: '/logout', title: 'ログアウト', icon: 'directions_run'},
         ],
         footerIcons: [
           { name: 'fa-twitter-square', link: 'https://twitter.com/platykun'},
@@ -111,10 +113,10 @@
     },
     computed: {
       logoLink() {
-        return localStorage.logined ? '/top' : '/';
+        return LoginUserStore.isLogining() ? '/top' : '/';
       },
       loginUserName() {
-        return localStorage.logined ? localStorage.userId : '未ログイン';
+        return LoginUserStore.isLogining() ? LoginUserStore.getUserId() : '未ログイン';
       },
     }
   };

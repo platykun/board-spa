@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2>{{ msg }}</h2>
-    <v-flex 
+    <v-flex
       xs12 
       sm6 
       offset-sm3>
@@ -51,6 +51,7 @@
 import Login from '~/plugins/js/interface/Login';
 import UserIdForm from '~/components/form/userIdForm';
 import PasswordForm from '~/components/form/passwordForm';
+import LoginUserStore from '~/plugins/js/store/LoginUserStore';
 
 export default {
   layout: 'home',
@@ -67,27 +68,16 @@ export default {
       password: '',
     };
   },
-  mounted() {
-    if (localStorage.userId) {
-      this.userId = localStorage.userId;
-    }
-    if (localStorage.password) {
-      this.password = localStorage.password;
-    }
-  },
   methods: {
     sendLogin() {
       const login = new Login(this.userId, this.password);
 
       login.login().then(
         (response) => {
-          // eslint-disable-next-line
-          console.log(response);
-          localStorage.userId = this.userId;
-          localStorage.password = this.password;
-          localStorage.token = response.data.token;
-          localStorage.authList = response.data.authList;
-          localStorage.logined = true;
+            LoginUserStore.storeLoginInfo(
+                this.userId,
+                response.data.token,
+                response.data.authList,);
           this.$router.push({ path: '/top' });
         })
         .catch((error) => {

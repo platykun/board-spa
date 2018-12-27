@@ -52,6 +52,7 @@ import Signup from '~/plugins/js/interface/Signup';
 import Login from '~/plugins/js/interface/Login';
 import UserIdForm from '~/components/form/userIdForm';
 import PasswordForm from '~/components/form/passwordForm';
+import LoginUserStore from '~/plugins/js/store/LoginUserStore';
 
 export default {
   layout: 'home',
@@ -76,7 +77,7 @@ export default {
       Signup.isAvailableUser(val).then(
         (response) => {
           const result = response.data.result;
-          if(result == false) {
+          if(result === false) {
             this.errorMsg = '記載されたユーザIDはすでに使われています.'
           } else {
             this.errorMsg = null;
@@ -92,11 +93,10 @@ export default {
           const login = new Login(this.userId, this.password);
           login.login().then(
             (response) => {
-              localStorage.userId = this.userId;
-              localStorage.password = this.password;
-              localStorage.token = response.data.token;
-              localStorage.authList = response.data.authList;
-              localStorage.logined = true;
+              LoginUserStore.storeLoginInfo(
+                      this.userId,
+                      response.data.token,
+                      response.data.authList,);
               this.$router.push({path: '/tutorial'});
             }).catch((error) => {
               this.errorMsg = 'ユーザ作成後のログインに失敗しました. reason:' + error.message;

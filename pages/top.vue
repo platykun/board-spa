@@ -7,16 +7,16 @@
       slider-color="accent"
     >
       <v-tab
-        v-for="tab in tabs"
-        :key="tab + 'v-tab'"
+        v-for="(tab, index) in tabs"
+        :key="tab + 'v-tab' + index"
         ripple
       >
         <v-icon class="hidden-xs-only">{{ tab.icon }}</v-icon>
         {{ tab.title }}
       </v-tab>
       <v-tab-item
-        v-for="tab in tabs"
-        :key="tab + 'v-tab-item'"
+        v-for="(tab, index) in tabs"
+        :key="tab + 'v-tab-item' + index"
         class="container"
       >
         <div v-show="tab.action === 'myHistory'">
