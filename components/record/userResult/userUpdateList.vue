@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import UserResult from '~/plugins/js/interface/UserResult.js';
+import UserResult from '~/plugins/js/interface/UserResult';
 import UserResultModal from '~/components/record/userResult/userResultModal';
 import UpdateUserResultModal from '~/components/record/userResult/UPdateUserResultModal';
 
