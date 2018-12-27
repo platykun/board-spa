@@ -24,11 +24,11 @@
       </div>
       <div>
         <div class="secondary--text caption">結果詳細</div>
-        <UsersSelectMordal
+        <UsersResultList
           v-if="isNewResult"
           v-model="userResults"
         />
-        <UsersUpdateMordal
+        <UserUpdateList
           v-if="!isNewResult"
           :input-users="userResults"
           :result-id="resultId"
@@ -49,16 +49,16 @@ import Result from '~/plugins/js/interface/Result.js';
 import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
 import BoardGameSelectMordal from '~/components/record/boardGameSelectMordal';
 import PlaceSelectMordal from '~/components/record/placeSelectMordal';
-import UsersSelectMordal from '~/components/record/usersSelectMordal';
-import UsersUpdateMordal from '~/components/record/usersUpdateMordal';
+import UsersResultList from '~/components/record/userResult/userResultList';
+import UserUpdateList from '~/components/record/userResult/userUpdateList';
 
 export default {
   name: 'Result',
   components: {
     'BoardGameSelectMordal': BoardGameSelectMordal,
     'PlaceSelectMordal': PlaceSelectMordal,
-    'UsersSelectMordal': UsersSelectMordal,
-    'UsersUpdateMordal': UsersUpdateMordal,
+    'UsersResultList': UsersResultList,
+    'UserUpdateList': UserUpdateList,
   },
   data() {
     console.log(this.$store.state);
