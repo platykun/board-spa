@@ -1,12 +1,13 @@
 <template>
   <v-form v-model="valid">
     <v-text-field
-      v-model="name"
+      :value="name"
       :rules="nameRules"
       :dark="dark"
       label="ユーザID"
       type="text"
       required
+      @change="v => this.name = v"
     />
   </v-form>
 </template>
