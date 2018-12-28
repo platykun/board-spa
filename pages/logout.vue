@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <v-alert
-            value=true
-            class="info"
-            icon="info"
-    >ログアウトしました</v-alert>
+      value=true
+      class="info"
+      icon="info"
+    >ログアウトしました
+    </v-alert>
     <v-flex
-      xs12 
-      sm6 
+      xs12
+      sm6
       offset-sm3>
       <v-card
         color="primary"
@@ -20,7 +21,8 @@
           <v-btn
             class="accent"
             dark
-            to="/login">ログイン画面へ</v-btn>
+            to="/login">ログイン画面へ
+          </v-btn>
           <v-spacer/>
           <v-btn
             flat
@@ -35,18 +37,17 @@
 </template>
 
 <script>
-import LoginUserStore from '~/plugins/js/store/LoginUserStore';
+  import LoginUserStore from '~/plugins/js/store/LoginUserStore';
 
-export default {
-  layout: 'logout',
-  beforeCreate() {
-    LoginUserStore.storeLogout();
-  },
-  data() {
-    return {
-    };
-  },
-};
+  export default {
+    layout: 'logout',
+    beforeCreate() {
+      LoginUserStore.storeLogout();
+    },
+    data() {
+      return {};
+    },
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

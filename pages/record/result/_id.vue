@@ -51,42 +51,40 @@
 </template>
 
 <script>
-import Result from '~/plugins/js/interface/Result.js';
-import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
-import recordCard from '~/components/record/recordCard';
-import moment from 'moment';
+  import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
+  import recordCard from '~/components/organisms/cards/recordCard';
+  import moment from 'moment';
 
-export default {
-  name: 'Result',
-  validate ({ params }) {
-    return /^\d+$/.test(params.id)
-  },
-  filters: {
-    moment: function (date) {
-      return moment(date).format('YYYY/MM/DD HH:mm');
+  export default {
+    name: 'Result',
+    validate({params}) {
+      return /^\d+$/.test(params.id)
     },
-  },
-  components: {
-    'recordCard': recordCard,
-  },
-  data() {
-    return {
-    };
-  },
-  asyncData({app, query}, callback) {
-    const resultId = app.context.params.id;
-    HistoryResult.getHistoriesById(resultId).then(
-      (response) => {
-        let res = response.data.result;
-        callback(null, {
-          resultId: resultId,
-          boardGameTitle: res.boardGameTitle,
-          placeName: res.placeName,
-          userList: res.userList
-        })
-      });
-  },
-};
+    filters: {
+      moment: function (date) {
+        return moment(date).format('YYYY/MM/DD HH:mm');
+      },
+    },
+    components: {
+      'recordCard': recordCard,
+    },
+    data() {
+      return {};
+    },
+    asyncData({app, query}, callback) {
+      const resultId = app.context.params.id;
+      HistoryResult.getHistoriesById(resultId).then(
+        (response) => {
+          let res = response.data.result;
+          callback(null, {
+            resultId: resultId,
+            boardGameTitle: res.boardGameTitle,
+            placeName: res.placeName,
+            userList: res.userList
+          })
+        });
+    },
+  };
 </script>
 <style scoped>
 </style>

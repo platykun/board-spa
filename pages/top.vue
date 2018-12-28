@@ -67,64 +67,64 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import recordCard from '~/components/record/recordCard';
+  import {mapGetters} from 'vuex';
+  import recordCard from '~/components/organisms/cards/recordCard';
 
-export default {
-  components: {
-   'recordCard': recordCard,
-  },
-  data() {
-    return {
-      active_tab: 0,
-      msg: 'Welcome to record page',
-      checkInPlace: 'ボドゲショップ',
-      tabs: [
-        { action: 'myHistory', title: 'Myりれき', icon: 'home' },
-        { action: 'nearHistory', title: '付近', icon: 'location_on' },
-        { action: 'allHistory', title: 'すべて', icon: 'group' },
-      ],
-      items: [
-        {
-          headline: 'チェックイン場所',
-          title: '未チェックイン',
-          to: '/record/checkin',
-          icon: 'location_on',
-          icontitle: 'チェックイン',
-          showCheckIn: true,
-        },
-        {
-          headline: null,
-          title: '記録',
-          to: '/record/result',
-          icon: 'add',
-          icontitle: '記録',
-          showCheckIn: false,
-        },
-        {
-          headline: null,
-          title: '記録の共有',
-          to: '/share/tweet',
-          icon: 'fa-twitter',
-          icontitle: '共有',
-          showCheckIn: false,
-        },
+  export default {
+    components: {
+      'recordCard': recordCard,
+    },
+    data() {
+      return {
+        active_tab: 0,
+        msg: 'Welcome to record page',
+        checkInPlace: 'ボドゲショップ',
+        tabs: [
+          {action: 'myHistory', title: 'Myりれき', icon: 'home'},
+          {action: 'nearHistory', title: '付近', icon: 'location_on'},
+          {action: 'allHistory', title: 'すべて', icon: 'group'},
         ],
-    };
-  },
-  computed: {
-    ...mapGetters({
-      checkIn: 'userDetail/checkIn',
-      myHistory: 'userDetail/myHistory',
-      nearHistory: 'userDetail/nearHistory',
-      allHistory: 'userDetail/allHistory',
-    }),
-  },
-  async asyncData({ route, store }) {
-    console.log("record/top.vue asyncData called");
-    store.dispatch('userDetail/addUserDetail');
-  },
-};
+        items: [
+          {
+            headline: 'チェックイン場所',
+            title: '未チェックイン',
+            to: '/record/checkin',
+            icon: 'location_on',
+            icontitle: 'チェックイン',
+            showCheckIn: true,
+          },
+          {
+            headline: null,
+            title: '記録',
+            to: '/record/result',
+            icon: 'add',
+            icontitle: '記録',
+            showCheckIn: false,
+          },
+          {
+            headline: null,
+            title: '記録の共有',
+            to: '/share/tweet',
+            icon: 'fa-twitter',
+            icontitle: '共有',
+            showCheckIn: false,
+          },
+        ],
+      };
+    },
+    computed: {
+      ...mapGetters({
+        checkIn: 'userDetail/checkIn',
+        myHistory: 'userDetail/myHistory',
+        nearHistory: 'userDetail/nearHistory',
+        allHistory: 'userDetail/allHistory',
+      }),
+    },
+    async asyncData({route, store}) {
+      console.log("record/top.vue asyncData called");
+      store.dispatch('userDetail/addUserDetail');
+    },
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -26,46 +26,45 @@
 </template>
 
 <script>
-import Place from '~/plugins/js/interface/Place.js';
+  import Place from '~/plugins/js/interface/Place.js';
 
-export default {
-  data() {
-    return {
-      msg: 'チェックイン',
-      place: '',
-      places: null,
-      notifications: null,
-    };
-  },
-  computed: {
-  },
-  watch: {
-    place(val) {
-      Place.findPlace(val).then(
+  export default {
+    data() {
+      return {
+        msg: 'チェックイン',
+        place: '',
+        places: null,
+        notifications: null,
+      };
+    },
+    computed: {},
+    watch: {
+      place(val) {
+        Place.findPlace(val).then(
+          (response) => {
+            this.places = response.data.result;
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.log(error);
+            this.msg = '登録に失敗しました.';
+          });
+      },
+    },
+    beforeCreate() {
+      Place.findAllPlace().then(
         (response) => {
-          this.places = response.data.result;
-        })
-        .catch((error) => {
           // eslint-disable-next-line
-          console.log(error);
-          this.msg = '登録に失敗しました.';
+          console.log(response.data.result);
+          this.places = response.data.result;
         });
     },
-  },
-  beforeCreate() {
-    Place.findAllPlace().then(
-      (response) => {
-        // eslint-disable-next-line
-        console.log(response.data.result);
-        this.places = response.data.result;
-      });
-  },
-  methods: {
-    checkinLink(id){
-      return '/record/checkin/' + id;
+    methods: {
+      checkinLink(id) {
+        return '/record/checkin/' + id;
+      },
     },
-  },
-};
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

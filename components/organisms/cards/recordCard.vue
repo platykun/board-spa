@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to= "resultLink"
+    :to="resultLink"
     class="ma-2"
   >
     <v-card-title>
@@ -65,16 +65,16 @@
         default: false
       },
       disableName: {
-          type: Boolean,
-          default: false,
+        type: Boolean,
+        default: false,
       },
       disablePlace: {
-          type: Boolean,
-          default: false,
+        type: Boolean,
+        default: false,
       },
     },
     computed: {
-      resultLink: function(){
+      resultLink: function () {
         return '/record/result/' + this.id;
       },
     },

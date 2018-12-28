@@ -1,7 +1,7 @@
 <template>
-  <v-dialog 
-    v-model="dialog" 
-    scrollable 
+  <v-dialog
+    v-model="dialog"
+    scrollable
   >
     <div slot="activator">
       <v-btn
@@ -19,10 +19,10 @@
         Select Place
         <v-spacer/>
         <v-btn
-                outline
-                round
-                class="accent accent--text"
-                to="/register/place">
+          outline
+          round
+          class="accent accent--text"
+          to="/register/place">
           見つからない場合
         </v-btn>
       </v-card-title>
@@ -49,36 +49,36 @@
 </template>
 
 <script>
-import Place from '~/plugins/js/interface/Place.js';
+  import Place from '~/plugins/js/interface/Place.js';
 
-export default {
-  data () {
-    return {
-      dialog: false,
-      placeName: '',
-      places: [],
-    }
-  },
-  watch: {
-    placeName(val) {
-      Place.findPlace(val).then(
-        (response) => {
-          this.places = response.data.result;
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.log(error);
-          this.msg = '登録に失敗しました.';
-        });
-    }
-  },
-  methods: {
-    selectPlace(val) {
-      this.dialog = false;
-      this.$emit('input', val);
+  export default {
+    data() {
+      return {
+        dialog: false,
+        placeName: '',
+        places: [],
+      }
+    },
+    watch: {
+      placeName(val) {
+        Place.findPlace(val).then(
+          (response) => {
+            this.places = response.data.result;
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.log(error);
+            this.msg = '登録に失敗しました.';
+          });
+      }
+    },
+    methods: {
+      selectPlace(val) {
+        this.dialog = false;
+        this.$emit('input', val);
+      }
     }
   }
-}
 </script>
 
 <style>

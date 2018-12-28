@@ -22,8 +22,7 @@
     data: () => ({
       valid: false,
       name: '',
-      nameRules: [
-      ],
+      nameRules: [],
     }),
     watch: {
       name(val) {

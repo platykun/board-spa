@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <v-flex 
-      xs12 
+    <v-flex
+      xs12
       sm8
       offset-sm2>
       <p class="subheading primary--text">共有したい履歴を選択してツイートボタンを押してください</p>
@@ -30,40 +30,40 @@
 </template>
 
 <script>
-import TweetButton from '~/components/record/tweetButton';
-import Detail from '~/plugins/js/interface/Detail.js';
+  import TweetButton from '~/components/organisms/buttons/tweetButton';
+  import Detail from '~/plugins/js/interface/Detail.js';
 
-export default {
-  components: {
-    'TweetButton': TweetButton,
-  },
-
-  data() {
-    return {
-      playList: [],
-    }
-  },
-  beforeCreate() {
-    let playList = [];
-    Detail.getDetail().then(
-      (response) => {
-        playList = response.data.result.myHistory.map(function(m) {
-          let res = {status: false};
-          res.name = m.boardGameTitle;
-          res.place = m.placeName;
-          return res;
-        });
-        this.playList = playList;
-      }
-    );
-  },
-  methods: {
-    activePlayNameList: function() {
-      return this.playList
-        .filter(p => p.status === true)
-        .map(p => p.name);
+  export default {
+    components: {
+      'TweetButton': TweetButton,
     },
-  },
-}
+
+    data() {
+      return {
+        playList: [],
+      }
+    },
+    beforeCreate() {
+      let playList = [];
+      Detail.getDetail().then(
+        (response) => {
+          playList = response.data.result.myHistory.map(function (m) {
+            let res = {status: false};
+            res.name = m.boardGameTitle;
+            res.place = m.placeName;
+            return res;
+          });
+          this.playList = playList;
+        }
+      );
+    },
+    methods: {
+      activePlayNameList: function () {
+        return this.playList
+          .filter(p => p.status === true)
+          .map(p => p.name);
+      },
+    },
+  }
 </script>
 

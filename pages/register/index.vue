@@ -9,13 +9,13 @@
 
 <script>
 
-export default {
-  data() {
-    return {
-      msg: 'Welcome to record page',
-    };
-  },
-};
+  export default {
+    data() {
+      return {
+        msg: 'Welcome to record page',
+      };
+    },
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

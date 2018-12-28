@@ -20,7 +20,7 @@
         default: false,
       },
     },
-    data () {
+    data() {
       const MAX_LENGTH = 20;
       const MIN_LENGTH = 4;
 

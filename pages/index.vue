@@ -12,7 +12,8 @@
         >
           <v-icon
             dark
-            size="100px">ballot</v-icon>
+            size="100px">ballot
+          </v-icon>
           <h1 class="white--text mb-2 display-1 text-xs-center">Board Game Management</h1>
           <div class="subheading mb-3 text-xs-center">This is an application to record the board game you played</div>
           <v-btn
@@ -57,7 +58,8 @@
                   <v-card-text class="text-xs-center">
                     <v-icon
                       x-large
-                      class="accent--text">{{ description.icon }}</v-icon>
+                      class="accent--text">{{ description.icon }}
+                    </v-icon>
                   </v-card-text>
                   <v-card-title
                     primary-title
@@ -166,24 +168,18 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
-export default {
-  layout: 'home',
-  components: {
-    Logo,
-    VuetifyLogo
-  },
-  data() {
-    return {
-      descriptions: [
-        {icon: 'fa-pencil', title: '記録する', desc: '遊んだボードゲームを記録する事ができます。'},
-        {icon: 'fa-book', title: '閲覧する', desc: '様々なプレイヤーのプレイ記録を閲覧することができます。'},
-        {icon: 'fa-twitter', title: '共有する', desc: 'twitter等で情報を共有することができます。'},
-      ],
+  export default {
+    layout: 'home',
+    data() {
+      return {
+        descriptions: [
+          {icon: 'fa-pencil', title: '記録する', desc: '遊んだボードゲームを記録する事ができます。'},
+          {icon: 'fa-book', title: '閲覧する', desc: '様々なプレイヤーのプレイ記録を閲覧することができます。'},
+          {icon: 'fa-twitter', title: '共有する', desc: 'twitter等で情報を共有することができます。'},
+        ],
+      }
     }
   }
-}
 </script>
 

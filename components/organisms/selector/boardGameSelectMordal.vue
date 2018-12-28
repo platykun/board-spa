@@ -1,7 +1,7 @@
 <template>
-  <v-dialog 
-    v-model="dialog" 
-    scrollable 
+  <v-dialog
+    v-model="dialog"
+    scrollable
   >
     <div slot="activator">
       <v-btn
@@ -18,10 +18,10 @@
         Select BoardGame
         <v-spacer/>
         <v-btn
-                outline
-                round
-                class="accent accent--text"
-                to="/register/boardGame">
+          outline
+          round
+          class="accent accent--text"
+          to="/register/boardGame">
           見つからない場合
         </v-btn>
       </v-card-title>
@@ -48,38 +48,38 @@
 </template>
 
 <script>
-import BoardGame from '~/plugins/js/interface/BoardGame.js';
+  import BoardGame from '~/plugins/js/interface/BoardGame.js';
 
-export default {
-  data () {
-    return {
-      dialogm1: '',
-      msg: '',
-      dialog: false,
-      boardGameTitle: '',
-      boardGames: [],
-    }
-  },
-  watch: {
-    boardGameTitle(val) {
-      BoardGame.findBoardGame(val).then(
-        (response) => {
-          this.boardGames = response.data.result;
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.log(error);
-          this.msg = '登録に失敗しました.';
-        });
-    }
-  },
-  methods: {
-    selectBoardGame(val) {
-      this.dialog = false;
-      this.$emit('input', val);
+  export default {
+    data() {
+      return {
+        dialogm1: '',
+        msg: '',
+        dialog: false,
+        boardGameTitle: '',
+        boardGames: [],
+      }
+    },
+    watch: {
+      boardGameTitle(val) {
+        BoardGame.findBoardGame(val).then(
+          (response) => {
+            this.boardGames = response.data.result;
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.log(error);
+            this.msg = '登録に失敗しました.';
+          });
+      }
+    },
+    methods: {
+      selectBoardGame(val) {
+        this.dialog = false;
+        this.$emit('input', val);
+      }
     }
   }
-}
 </script>
 
 <style>

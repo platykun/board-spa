@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <v-flex 
-      xs12 
-      sm6 
+    <v-flex
+      xs12
+      sm6
       offset-sm3>
       <v-card>
         <v-card-title primary-title>
@@ -37,34 +37,34 @@
 </template>
 
 <script>
-import Place from '~/plugins/js/interface/Place.js';
+  import Place from '~/plugins/js/interface/Place.js';
 
-export default {
-  name: 'Checkin',
-  validate ({ params }) {
-    return /^\d+$/.test(params.id)
-  },
-  data() {
-    return {
-      place: '',
-    };
-  },
-  beforeCreate() {
-    const id = this.$route.params.id;
-    Place.findById(id).then(
-      ( response ) => {
-        this.place = response.data.result;
-      }
-    );
-  },
-  methods: {
-    checkIn() {
-      Place.checkIn(this.place.id);
-      this.$router.push({ path: '/top' });
-      this.store.dispatch("userDetail/updateCheckIn", this.place);
+  export default {
+    name: 'Checkin',
+    validate({params}) {
+      return /^\d+$/.test(params.id)
     },
-  }
-};
+    data() {
+      return {
+        place: '',
+      };
+    },
+    beforeCreate() {
+      const id = this.$route.params.id;
+      Place.findById(id).then(
+        (response) => {
+          this.place = response.data.result;
+        }
+      );
+    },
+    methods: {
+      checkIn() {
+        Place.checkIn(this.place.id);
+        this.$router.push({path: '/top'});
+        this.store.dispatch("userDetail/updateCheckIn", this.place);
+      },
+    }
+  };
 </script>
 <style scoped>
 </style>
