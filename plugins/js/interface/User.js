@@ -6,4 +6,13 @@ export default class User {
     const url = `/user/find/${ keyword }`;
     return api.requestWithToken('get', url);
   }
+
+  static getUserDetail(userId) {
+    const url = `/all/user/detail/${ userId }`;
+    return api.get(url, null);
+  }
+
+  static submitIcon(icon, iconColor) {
+    return api.requestWithToken('put', '/user/icon', { icon: icon, iconColor: iconColor});
+  }
 }

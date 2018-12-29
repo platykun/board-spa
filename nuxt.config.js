@@ -9,28 +9,27 @@ module.exports = {
   head: {
     title: pkg.name,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description },
-      { name: 'apple-mobile-web-app-capable', content: "yes"},
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: pkg.description},
+      {name: 'apple-mobile-web-app-capable', content: "yes"},
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'},
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'},
     ]
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {color: '#fff'},
 
   /*
   ** Global CSS
   */
   css: [
-    '~/assets/style/appTest.styl'
+    '~/assets/style/appTest.styl',
   ],
 
   /*
@@ -50,6 +49,20 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/vuetify',
     '@nuxtjs/pwa',
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      imports: [
+        //import whole set
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        },{
+          set: '@fortawesome/free-brands-svg-icons',
+          icons: ['fab']
+        }
+      ],
+    },
+    ],
     //  not use
     // '@nuxtjs/dotenv',
   ],
@@ -74,6 +87,17 @@ module.exports = {
   manifest: {
     name: 'BoardGameManagement',
     lang: 'ja',
+  },
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },{
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['fab']
+      }
+    ],
   },
 
   /*
@@ -100,16 +124,16 @@ module.exports = {
     }
   },
   script: [
-    { src: '~/plugins/js/helper/api.js' },
-    { src: '~/plugins/js/interface/CreateRoom.js' },
-    { src: '~/plugins/js/interface/Detail.js' },
-    { src: '~/plugins/js/interface/JoinRoom.js' },
-    { src: '~/plugins/js/interface/Login.js' },
-    { src: '~/plugins/js/interface/Place.js' },
-    { src: '~/plugins/js/interface/Result.js' },
-    { src: '~/plugins/js/interface/history/HistoryCheckin.js' },
-    { src: '~/plugins/js/interface/history/HistoryJoinRoom.js' },
-    { src: '~/plugins/js/interface/history/HistoryResult.js' },
+    {src: '~/plugins/js/helper/api.js'},
+    {src: '~/plugins/js/interface/CreateRoom.js'},
+    {src: '~/plugins/js/interface/Detail.js'},
+    {src: '~/plugins/js/interface/JoinRoom.js'},
+    {src: '~/plugins/js/interface/Login.js'},
+    {src: '~/plugins/js/interface/Place.js'},
+    {src: '~/plugins/js/interface/Result.js'},
+    {src: '~/plugins/js/interface/history/HistoryCheckin.js'},
+    {src: '~/plugins/js/interface/history/HistoryJoinRoom.js'},
+    {src: '~/plugins/js/interface/history/HistoryResult.js'},
   ],
 
   env: {

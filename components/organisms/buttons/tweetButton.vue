@@ -5,12 +5,15 @@
       class="accent"
       data-text="custom share text"
       dark>
-      <v-icon>fa-twitter</v-icon>
+      <fa
+        size="2x"
+        :icon="faTwitter"/>
     </v-btn>
   </div>
 </template>
 
 <script>
+  import {faTwitter} from '@fortawesome/free-brands-svg-icons'
 
   export default {
     props: {
@@ -18,6 +21,11 @@
         type: Object,
         required: true
       },
+    },
+    computed: {
+      faTwitter() {
+        return faTwitter;
+      }
     },
     methods: {
       twitterLink: function () {

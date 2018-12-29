@@ -21,7 +21,9 @@
       absolute
       temporary>
       <v-list dense>
-        <v-list-tile avatar>
+        <v-list-tile
+          :to="'/users/' + loginUserName"
+          avatar>
           <v-list-tile-avatar>
             <v-icon>person</v-icon>
           </v-list-tile-avatar>
@@ -38,6 +40,7 @@
             <!--v-list__tile v-list__tile--link v-list__tile--avatar theme--light-->
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
+
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>{{ item.title }}</v-list-tile-title>
@@ -70,7 +73,16 @@
           dark
         >
           <span>{{ navBottom.name }}</span>
-          <v-icon>{{ navBottom.icon }}</v-icon>
+          <fa
+            v-if="navBottom.awesome"
+            :icon="faTwitter"
+            size="2x"
+          />
+          <v-icon
+            v-else
+          >
+            {{ navBottom.icon }}
+          </v-icon>
         </v-btn>
       </template>
     </v-bottom-nav>
@@ -79,8 +91,11 @@
 
 <script>
   import LoginUserStore from '~/plugins/js/store/LoginUserStore';
+  import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
   export default {
+    components: {
+    },
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
@@ -107,10 +122,10 @@
           { name: 'fa-github-square', link: 'https://github.com/platykun'},
         ],
         navBottoms: [
-          { name: "Top", icon: "home", link: '/top'},
-          { name: "CheckIn", icon: "location_on", link: '/record/checkin'},
-          { name: "Record", icon: "note_add", link: '/record/result'},
-          { name: "Tweet", icon: "fa-twitter", link: '/share/tweet'},
+          { awesome: false, name: "Top", icon: "home", link: '/top'},
+          { awesome: false, name: "CheckIn", icon: "location_on", link: '/record/checkin'},
+          { awesome: false, name: "Record", icon: "note_add", link: '/record/result'},
+          { awesome: true, name: "Tweet", icon: "twitter", link: '/share/tweet'},
         ],
       };
     },
@@ -120,6 +135,9 @@
       },
       loginUserName() {
         return LoginUserStore.isLogining() ? LoginUserStore.getUserId() : '未ログイン';
+      },
+      faTwitter () {
+        return faTwitter
       },
     }
   };
