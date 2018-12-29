@@ -121,7 +121,6 @@
       }),
     },
     async asyncData({route, store}) {
-      console.log("record/top.vue asyncData called");
       store.dispatch('userDetail/addUserDetail');
     },
   };
@@ -129,7 +128,4 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .text-overflow-ellipsis {
-    text-overflow: ellipsis;
-  }
 </style>

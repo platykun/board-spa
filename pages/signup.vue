@@ -23,7 +23,7 @@
 
 <script>
   import CommonAlert from '~/components/molecules/alert/commonAlert';
-  import SignUpFormCard from '~/components/organisms/cards/signUpFormCard';
+  import SignUpFormCard from '~/components/organisms/cards/signupFormCard';
 
   export default {
     layout: 'home',
