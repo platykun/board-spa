@@ -56,10 +56,11 @@
                 md4>
                 <v-card class="elevation-0 transparent">
                   <v-card-text class="text-xs-center">
-                    <v-icon
-                      x-large
-                      class="accent--text">{{ description.icon }}
-                    </v-icon>
+                    <fa
+                      class="accent--text"
+                      :icon="description.icon"
+                      size="2x"
+                    />
                   </v-card-text>
                   <v-card-title
                     primary-title
@@ -168,18 +169,24 @@
 </template>
 
 <script>
+  import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
   export default {
     layout: 'home',
     data() {
       return {
         descriptions: [
-          {icon: 'fa-pencil', title: '記録する', desc: '遊んだボードゲームを記録する事ができます。'},
-          {icon: 'fa-book', title: '閲覧する', desc: '様々なプレイヤーのプレイ記録を閲覧することができます。'},
-          {icon: 'fa-twitter', title: '共有する', desc: 'twitter等で情報を共有することができます。'},
+          {icon: 'pencil-alt', title: '記録する', desc: '遊んだボードゲームを記録する事ができます。'},
+          {icon: 'book', title: '閲覧する', desc: '様々なプレイヤーのプレイ記録を閲覧することができます。'},
+          {icon: 'dove', title: '共有する', desc: 'twitter等で情報を共有することができます。'},
         ],
       }
-    }
+    },
+    computed: {
+      faTwitter() {
+        return faTwitter;
+      },
+    },
   }
 </script>
 

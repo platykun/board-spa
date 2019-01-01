@@ -15,6 +15,7 @@ export default class LoginUserStore {
 
   // アクセストークンを破棄してログアウト状態にする
   static storeLogout() {
+    localStorage.removeItem("token");
     localStorage.userId = null;
     localStorage.token = null;
     localStorage.authList = null;
