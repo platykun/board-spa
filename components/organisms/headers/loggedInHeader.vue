@@ -11,14 +11,20 @@
       BoardGameDiary
     </v-toolbar-title>
     <v-spacer/>
+
     <v-toolbar-side-icon @click.stop="clickedIcon()">
-      <v-icon>person</v-icon>
+      <LoginUserAvatar/>
     </v-toolbar-side-icon>
   </v-toolbar>
 </template>
 
 <script>
+  import LoginUserAvatar from '~/components/organisms/icon/loginUserAvatar';
+
   export default {
+    components: {
+      'LoginUserAvatar': LoginUserAvatar,
+    },
     props: {
       logoLink: {
         type: String,
@@ -26,8 +32,7 @@
       },
     },
     data() {
-      return {
-      };
+      return {};
     },
     methods: {
       clickedIcon() {

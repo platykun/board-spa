@@ -8,6 +8,13 @@ export default class LoginUserStore {
     localStorage.logined = true;
   }
 
+  // ユーザ情報をlocalStorageに格納する
+  static storeUserInfo(icon, hueColor, chromaColor) {
+    localStorage.icon = icon;
+    localStorage.hueColor = hueColor;
+    localStorage.chromaColor = chromaColor;
+  }
+
   // アクセストークンの有無でログイン状態を返却する
   static isLogining() {
     return (localStorage.token !== null);
@@ -32,6 +39,18 @@ export default class LoginUserStore {
 
   static getAuthList() {
     return localStorage.authList;
+  }
+
+  static getIcon() {
+    return localStorage.icon;
+  }
+
+  static getHueColor() {
+    return localStorage.hueColor;
+  }
+
+  static getChromaColor() {
+    return localStorage.chromaColor;
   }
 
   // 将来このメソッドを作る予定

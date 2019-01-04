@@ -82,8 +82,7 @@
       createUser() {
         Signup.signup(this.userId, this.userId, this.password).then(
           (response) => {
-            const login = new Login(this.userId, this.password);
-            login.login().then(
+            login.login(this.userId, this.password).then(
               (response) => {
                 LoginUserStore.storeLoginInfo(
                   this.userId,

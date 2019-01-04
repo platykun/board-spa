@@ -50,10 +50,6 @@
           { action: '/tutorial', title: 'チュートリアル', icon: 'contact_support' },
           { action: '/logout', title: 'ログアウト', icon: 'directions_run'},
         ],
-        footerIcons: [
-          { name: 'fa-twitter-square', link: 'https://twitter.com/platykun'},
-          { name: 'fa-github-square', link: 'https://github.com/platykun'},
-        ],
         navBottoms: [
           { awesome: false, name: "Top", icon: "home", link: '/top'},
           { awesome: false, name: "CheckIn", icon: "location_on", link: '/record/checkin'},
@@ -75,7 +71,9 @@
     },
     methods: {
       showDrawer() {
-        this.drawer = true;
+        console.log("called");
+        this.drawer = !this.drawer;
+        console.log(this.drawer);
       },
     }
   };
