@@ -3,7 +3,7 @@
     dark
     color="primary"
     clipped="true">
-    <v-toolbar-side-icon :to="logoLink">
+    <v-toolbar-side-icon @click.stop="clickedLogo()">
       <v-icon>ballot</v-icon>
     </v-toolbar-side-icon>
     <v-toolbar-title
@@ -11,8 +11,7 @@
       BoardGameDiary
     </v-toolbar-title>
     <v-spacer/>
-
-    <v-toolbar-side-icon @click.stop="clickedIcon()">
+    <v-toolbar-side-icon :to="iconLink">
       <LoginUserAvatar/>
     </v-toolbar-side-icon>
   </v-toolbar>
@@ -26,7 +25,7 @@
       'LoginUserAvatar': LoginUserAvatar,
     },
     props: {
-      logoLink: {
+      iconLink: {
         type: String,
         required: false,
       },
@@ -35,7 +34,7 @@
       return {};
     },
     methods: {
-      clickedIcon() {
+      clickedLogo() {
         this.$emit('clicked');
       },
     },

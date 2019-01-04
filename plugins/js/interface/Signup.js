@@ -3,7 +3,7 @@ import api from '~/plugins/js/helper/api';
 /* eslint-disable-next-line */
 export default class Signup {
   static isAvailableUser(loginId) {
-    const url = '/all/user_available/' + loginId;
+    const url = `/users/${loginId}/available`;
     return api.get(url, null);
   }
 

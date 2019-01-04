@@ -1,11 +1,11 @@
 <template>
   <div>
     <LoggedInHeader
-      :logoLink="logoLink"
+      :iconLink="iconLink"
       v-on:clicked="showDrawer"
     />
     <LoggedInNavigationDrawer
-      :drawer="drawer"
+      v-model="drawer"
       :avatarLink="avatarLink"
       :items="items"
     />
@@ -59,8 +59,9 @@
       };
     },
     computed: {
-      logoLink() {
-        return LoginUserStore.isLogining() ? '/top' : '/';
+      iconLink() {
+        const userId = LoginUserStore.getUserId();
+        return LoginUserStore.isLogining() ? '/users/' + userId : '/';
       },
       loginUserName() {
         return LoginUserStore.isLogining() ? LoginUserStore.getUserId() : '未ログイン';

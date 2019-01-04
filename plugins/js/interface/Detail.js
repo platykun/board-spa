@@ -4,7 +4,7 @@ import api from '~/plugins/js/helper/api';
 export default class Detail {
 
   static getDetail() {
-    const url = '/user/status';
+    const url = '/users/me/status';
     return api.requestWithToken('get', url);
   }
 }

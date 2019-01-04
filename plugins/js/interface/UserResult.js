@@ -6,7 +6,7 @@ export default class UserResult {
     const params = {
       userId, score, comment
     };
-    const url = '/user/user_result/' + resultId + '/new';
+    const url = '/user/result/' + resultId + '/users';
     return api.requestWithToken('put', url, params);
   }
 
@@ -14,12 +14,12 @@ export default class UserResult {
     const params = {
       userId, score, comment
     };
-    const url = '/user/user_result/' + userResultId + '/' + resultId;
+    const url = '/user/result/' + resultId + '/users/' + userResultId;
     return api.requestWithToken('put', url, params);
   }
 
   static deleteResult(userResultId) {
-    const url = '/user/user_result/' + userResultId;
+    const url = '/user/result/' + resultId + '/users/' + userResultId;
     return api.requestWithToken('delete', url, null);
   }
 }

@@ -41,7 +41,7 @@ export const mutations = {
 
 export const actions = {
   addUserDetail({ commit }) {
-    const url = '/user/status';
+    const url = '/users/me/status';
     api.requestWithToken('get', url).then(
       (response) => {
         commit('setDetail', response.data.result);

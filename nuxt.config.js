@@ -125,14 +125,11 @@ module.exports = {
   },
   script: [
     {src: '~/plugins/js/helper/api.js'},
-    {src: '~/plugins/js/interface/CreateRoom.js'},
     {src: '~/plugins/js/interface/Detail.js'},
-    {src: '~/plugins/js/interface/JoinRoom.js'},
     {src: '~/plugins/js/interface/Login.js'},
     {src: '~/plugins/js/interface/Place.js'},
     {src: '~/plugins/js/interface/Result.js'},
     {src: '~/plugins/js/interface/history/HistoryCheckin.js'},
-    {src: '~/plugins/js/interface/history/HistoryJoinRoom.js'},
     {src: '~/plugins/js/interface/history/HistoryResult.js'},
   ],
 

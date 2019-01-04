@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    v-model="value"
     absolute
     temporary>
     <v-list dense>
@@ -47,10 +47,6 @@
 
   export default {
     props: {
-      drawer: {
-        type: Boolean,
-        required: true,
-      },
       avatarLink: {
         type: String,
         required: true,
@@ -58,11 +54,20 @@
       items: {
         type: Array,
         required: true,
+      },
+      value: {
+        type: Boolean,
+        required: true,
       }
     },
     data() {
       return {
       };
+    },
+    watch: {
+      value(val) {
+        this.$emit('input', val);
+      },
     },
     computed: {
       loginUserName() {
