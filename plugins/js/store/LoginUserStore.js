@@ -16,8 +16,11 @@ export default class LoginUserStore {
   }
 
   // アクセストークンの有無でログイン状態を返却する
+  // localStorage.tokenがnull or 'null' の場合falseを返却
+  // localStorage.tokenに値が格納されている場合trueを返却
   static isLogining() {
-    return (localStorage.token !== null);
+    return !(localStorage.token == null
+      || localStorage.token === 'null');
   }
 
   // アクセストークンを破棄してログアウト状態にする

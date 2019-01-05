@@ -11,9 +11,13 @@
       BoardGameDiary
     </v-toolbar-title>
     <v-spacer/>
-    <v-toolbar-side-icon :to="iconLink">
-      <LoginUserAvatar/>
-    </v-toolbar-side-icon>
+    <div>
+      <v-toolbar-side-icon
+        class="white"
+        :to="iconLink">
+        <LoginUserAvatar adjustSize/>
+      </v-toolbar-side-icon>
+    </div>
   </v-toolbar>
 </template>
 

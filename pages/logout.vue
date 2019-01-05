@@ -40,7 +40,7 @@
   import LoginUserStore from '~/plugins/js/store/LoginUserStore';
 
   export default {
-    layout: 'logout',
+    layout: 'home',
     beforeCreate() {
       LoginUserStore.storeLogout();
     },

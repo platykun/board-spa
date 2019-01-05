@@ -22,6 +22,11 @@
         required: false,
         default: '2x'
       },
+      adjustSize: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
     },
     data() {
       return {};
@@ -42,12 +47,17 @@
         this.$emit('clicked');
       },
       iconClass() {
-        return this.hueColor + '--text ' + 'text--' + this.chromaColor;
+        var iconClass = this.hueColor + '--text ' + 'text--' + this.chromaColor;
+
+        return this.adjustSize ? iconClass + ' adjustFontSize' : iconClass;
       }
     },
   }
 </script>
 
 
-<style>
+<style scoped>
+  .adjustFontSize {
+    font-size: 1.8em
+  }
 </style>
