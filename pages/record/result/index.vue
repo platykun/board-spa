@@ -33,13 +33,16 @@
           :input-users="userResults"
           :result-id="resultId"
         />
-        <v-btn
-          v-if="isNewResult"
-          class="accent"
-          dark
-          @click.stop.prevent="result"
-        >結果作成
-        </v-btn>
+        <v-layout>
+          <v-spacer/>
+          <v-btn
+            v-if="isNewResult"
+            class="accent"
+            dark
+            @click.stop.prevent="result"
+          >結果作成
+          </v-btn>
+        </v-layout>
       </div>
     </div>
   </div>

@@ -1,17 +1,19 @@
 <template>
-  <div class="record">
+  <div class="container">
     <div class="flex xs12 sm6 offset-sm3">
-      <h2>ボードゲーム新規登録</h2>
+      <h1 class="display-1 primary--text">ボードゲーム新規登録</h1>
       <BoardGameTitleForm v-model="boardGameTitle"/>
       <BoardGamePlayerForm v-model="boardGamePlayer"/>
       <BoardGameOverviewForm v-model="boardGameOverview"/>
-
-      <v-btn
-        class="accent"
-        dark
-        @click="registerBoardGame"
-      >登録
-      </v-btn>
+      <v-layout>
+        <v-spacer/>
+        <v-btn
+          class="accent"
+          dark
+          @click="registerBoardGame"
+        >登録
+        </v-btn>
+      </v-layout>
     </div>
   </div>
 </template>

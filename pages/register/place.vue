@@ -1,19 +1,22 @@
 <template>
-  <div class="record">
+  <div class="container">
     <div class="flex xs12 sm6 offset-sm3">
-      <h2>場所新規登録</h2>
+      <h1 class="display-1 primary--text">場所新規登録</h1>
       <PlaceNameForm
         v-model="placeName"
       />
       <PlaceUrlForm
         v-model="placeUrl"
       />
-      <v-btn
-        class="accent"
-        dark
-        @click="registerPlace"
-      >登録
-      </v-btn>
+      <v-layout>
+        <v-spacer/>
+        <v-btn
+          class="accent"
+          dark
+          @click="registerPlace"
+        >登録
+        </v-btn>
+      </v-layout>
     </div>
   </div>
 </template>

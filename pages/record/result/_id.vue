@@ -40,13 +40,16 @@
         </template>
       </v-list>
     </v-card>
-    <v-btn
-      :to="{ path: '/record/result', query: { resultId: resultId}}"
-      class="accent"
-      dark>
-      <v-icon>add</v-icon>
-      編集
-    </v-btn>
+    <v-layout>
+      <v-spacer/>
+      <v-btn
+        :to="{ path: '/record/result', query: { resultId: resultId}}"
+        class="accent"
+        dark>
+        <v-icon>add</v-icon>
+        編集
+      </v-btn>
+    </v-layout>
   </div>
 </template>
 

@@ -22,9 +22,12 @@
           </v-list-tile>
         </template>
       </v-list>
-      <TweetButton
-        :play-name-list="activePlayNameList()"
-      />
+      <v-layout>
+        <v-spacer/>
+        <TweetButton
+          :play-name-list="activePlayNameList()"
+        />
+      </v-layout>
     </v-flex>
   </div>
 </template>
