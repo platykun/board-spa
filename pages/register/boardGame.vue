@@ -28,6 +28,7 @@
       'BoardGamePlayerForm': BoardGamePlayerForm,
       'BoardGameTitleForm': BoardGameTitleForm,
     },
+    middleware: 'authenticated',
     data() {
       return {
         boardGameTitle: '',

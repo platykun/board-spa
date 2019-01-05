@@ -9,7 +9,7 @@ export const getters = {
 };
 
 export const mutations = {
-  setIsLoading(state, isLoading){
+  setIsLoading(state, isLoading) {
     state.isLoading = isLoading
   }
 };

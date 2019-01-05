@@ -28,6 +28,7 @@
       'PlaceNameForm': PlaceNameForm,
       'PlaceUrlForm': PlaceUrlForm,
     },
+    middleware: 'authenticated',
     data() {
       return {
         placeName: '',

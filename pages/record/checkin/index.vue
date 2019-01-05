@@ -29,6 +29,7 @@
   import Place from '~/plugins/js/interface/Place.js';
 
   export default {
+    middleware: 'authenticated',
     data() {
       return {
         msg: 'チェックイン',

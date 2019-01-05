@@ -37,7 +37,7 @@
     components: {
       'TweetButton': TweetButton,
     },
-
+    middleware: 'authenticated',
     data() {
       return {
         playList: [],

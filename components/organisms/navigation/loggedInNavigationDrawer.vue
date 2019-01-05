@@ -11,7 +11,7 @@
           <v-icon>person</v-icon>
         </v-list-tile-avatar>
         <v-list-tile-content>
-          <v-list-tile-title> {{ loginUserName }} </v-list-tile-title>
+          <v-list-tile-title>{{ loginUserName }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
       <template v-for="(item, index) in items">
@@ -61,8 +61,7 @@
       }
     },
     data() {
-      return {
-      };
+      return {};
     },
     watch: {
       value(val) {

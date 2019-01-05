@@ -40,7 +40,7 @@ export const mutations = {
 };
 
 export const actions = {
-  addUserDetail({ commit }) {
+  addUserDetail({commit}) {
     const url = '/users/me/status';
     api.requestWithToken('get', url).then(
       (response) => {
@@ -48,7 +48,7 @@ export const actions = {
       }
     );
   },
-  updateCheckIn({ commit }, checkin, checkInId) {
+  updateCheckIn({commit}, checkin, checkInId) {
     commit('setCheckIn', checkin, checkInId);
   },
 };

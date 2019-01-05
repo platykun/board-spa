@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+  import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 
   export default {
     props: {
@@ -38,16 +38,14 @@
       },
     },
     data() {
-      return {
-      };
+      return {};
     },
     computed: {
-      faTwitter () {
+      faTwitter() {
         return faTwitter;
       },
     },
-    methods: {
-    },
+    methods: {},
   }
 </script>
 

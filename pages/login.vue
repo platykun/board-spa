@@ -24,6 +24,7 @@
 
   export default {
     layout: 'home',
+    middleware: 'notAuthenticated',
     components: {
       'CommonAlert': CommonAlert,
       'LoginFormCard': LoginFormCard,

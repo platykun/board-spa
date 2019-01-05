@@ -44,6 +44,7 @@
     validate({params}) {
       return /^\d+$/.test(params.id)
     },
+    middleware: 'authenticated',
     data() {
       return {
         place: '',

@@ -55,6 +55,7 @@
 
   export default {
     name: 'Result',
+    middleware: 'authenticated',
     components: {
       'BoardGameSelectMordal': BoardGameSelectMordal,
       'PlaceSelectMordal': PlaceSelectMordal,
