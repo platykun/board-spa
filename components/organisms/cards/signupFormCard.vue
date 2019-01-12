@@ -3,7 +3,7 @@
     color="primary"
     class="white--text">
     <v-card-title primary-title>
-      <div class="headline">Signup</div>
+      <div class="headline">新規ユーザ作成</div>
     </v-card-title>
     <v-card-content>
       <div class="mx-2">

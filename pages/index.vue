@@ -3,26 +3,23 @@
     <section>
       <v-parallax
         src="/index_background.jpg"
-        height="600">
+        height="400">
         <v-layout
           column
           align-center
           justify-center
           class="white--text"
         >
-          <v-icon
-            dark
-            size="100px">ballot
-          </v-icon>
+          <img src="~/assets/logo.png" height="200">
           <h1 class="white--text mb-2 display-1 text-xs-center">Board Game Management</h1>
-          <div class="subheading mb-3 text-xs-center">This is an application to record the board game you played</div>
+          <div class="subheading mb-3 text-xs-center">遊んだボードゲームを記録するwebアプリケーション</div>
           <v-btn
-            class="accent mt-5"
+            class="accent mt-2"
             dark
             large
-            to="/login"
+            to="/signup"
           >
-            はじめる
+            新規登録
           </v-btn>
         </v-layout>
       </v-parallax>
@@ -77,97 +74,94 @@
         </v-flex>
       </v-layout>
     </section>
+    <!--<section>-->
+      <!--<v-parallax-->
+        <!--src="/index_background.jpg"-->
+        <!--height="380">-->
+        <!--<v-layout-->
+          <!--column-->
+          <!--align-center-->
+          <!--justify-center>-->
+          <!--<div class="headline white&#45;&#45;text mb-3 text-xs-center">他の人の記録を見てみましょう</div>-->
+          <!--<v-btn-->
+            <!--class="accent mt-5"-->
+            <!--dark-->
+            <!--large-->
+            <!--href="/pre-made-themes"-->
+          <!--&gt;-->
+            <!--記録を見る-->
+          <!--</v-btn>-->
+        <!--</v-layout>-->
+      <!--</v-parallax>-->
+    <!--</section>-->
 
-    <section>
-      <v-parallax
-        src="/index_background.jpg"
-        height="380">
-        <v-layout
-          column
-          align-center
-          justify-center>
-          <div class="headline white--text mb-3 text-xs-center">ここに気の利いたキャッチコピーが入る</div>
-          <em>ここにも気の利いたキャッチーなコメントが入る</em>
-          <v-btn
-            class="blue lighten-2 mt-5"
-            dark
-            large
-            href="/pre-made-themes"
-          >
-            Get Started
-          </v-btn>
-        </v-layout>
-      </v-parallax>
-    </section>
-
-    <section>
-      <v-container grid-list-xl>
-        <v-layout
-          row
-          wrap
-          justify-center
-          class="my-5">
-          <v-flex
-            xs12
-            sm4>
-            <v-card class="elevation-0 transparent">
-              <v-card-title
-                primary-title
-                class="layout justify-center">
-                <div class="headline">Company info</div>
-              </v-card-title>
-              <v-card-text>
-                カンパニーじゃないからこれの代わりの何かが入る
-              </v-card-text>
-            </v-card>
-          </v-flex>
-          <v-flex
-            xs12
-            sm4
-            offset-sm1>
-            <v-card class="elevation-0 transparent">
-              <v-card-title
-                primary-title
-                class="layout justify-center">
-                <div class="headline">Contact us</div>
-              </v-card-title>
-              <v-card-text>
-                フッター情報と情報が重複してるので不要かもしれない
-              </v-card-text>
-              <v-list class="transparent">
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-icon class="secondary--text">phone</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-content>
-                    <v-list-tile-title>**********</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-icon class="secondary--text">place</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Chicago, US</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-icon class="secondary--text">email</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-content>
-                    <v-list-tile-title>a@a.a</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </section>
+    <!--<section>-->
+      <!--<v-container grid-list-xl>-->
+        <!--<v-layout-->
+          <!--row-->
+          <!--wrap-->
+          <!--justify-center-->
+          <!--class="my-5">-->
+          <!--<v-flex-->
+            <!--xs12-->
+            <!--sm4>-->
+            <!--<v-card class="elevation-0 transparent">-->
+              <!--<v-card-title-->
+                <!--primary-title-->
+                <!--class="layout justify-center">-->
+                <!--<div class="headline">Company info</div>-->
+              <!--</v-card-title>-->
+              <!--<v-card-text>-->
+                <!--カンパニーじゃないからこれの代わりの何かが入る-->
+              <!--</v-card-text>-->
+            <!--</v-card>-->
+          <!--</v-flex>-->
+          <!--<v-flex-->
+            <!--xs12-->
+            <!--sm4-->
+            <!--offset-sm1>-->
+            <!--<v-card class="elevation-0 transparent">-->
+              <!--<v-card-title-->
+                <!--primary-title-->
+                <!--class="layout justify-center">-->
+                <!--<div class="headline">Contact us</div>-->
+              <!--</v-card-title>-->
+              <!--<v-card-text>-->
+                <!--フッター情報と情報が重複してるので不要かもしれない-->
+              <!--</v-card-text>-->
+              <!--<v-list class="transparent">-->
+                <!--<v-list-tile>-->
+                  <!--<v-list-tile-action>-->
+                    <!--<v-icon class="secondary&#45;&#45;text">phone</v-icon>-->
+                  <!--</v-list-tile-action>-->
+                  <!--<v-list-tile-content>-->
+                    <!--<v-list-tile-title>**********</v-list-tile-title>-->
+                  <!--</v-list-tile-content>-->
+                <!--</v-list-tile>-->
+                <!--<v-list-tile>-->
+                  <!--<v-list-tile-action>-->
+                    <!--<v-icon class="secondary&#45;&#45;text">place</v-icon>-->
+                  <!--</v-list-tile-action>-->
+                  <!--<v-list-tile-content>-->
+                    <!--<v-list-tile-title>Chicago, US</v-list-tile-title>-->
+                  <!--</v-list-tile-content>-->
+                <!--</v-list-tile>-->
+                <!--<v-list-tile>-->
+                  <!--<v-list-tile-action>-->
+                    <!--<v-icon class="secondary&#45;&#45;text">email</v-icon>-->
+                  <!--</v-list-tile-action>-->
+                  <!--<v-list-tile-content>-->
+                    <!--<v-list-tile-title>a@a.a</v-list-tile-title>-->
+                  <!--</v-list-tile-content>-->
+                <!--</v-list-tile>-->
+              <!--</v-list>-->
+            <!--</v-card>-->
+          <!--</v-flex>-->
+        <!--</v-layout>-->
+      <!--</v-container>-->
+    <!--</section>-->
   </v-content>
 </template>
-
 <script>
   import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 

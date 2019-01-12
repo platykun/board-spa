@@ -12,6 +12,16 @@
         BoardGameDiary
       </v-toolbar-title>
       <v-spacer/>
+      <v-toolbar-items>
+        <v-btn
+          flat
+          to="/login"
+        >ログイン</v-btn>
+        <v-btn
+          flat
+          to="/signup"
+        >新規登録</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <nuxt/>
     <v-footer class="mt-5">
