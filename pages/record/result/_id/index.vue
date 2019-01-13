@@ -15,7 +15,7 @@
 
     <v-card>
       <v-list three-line>
-        <template v-for="user in userList">
+        <template v-for="(user, index) in userList">
           <v-list-tile
             :key="user.userId"
           >
@@ -33,17 +33,21 @@
             </v-list-tile-content>
             <v-list-action>
               <v-spacer/>
+              {{user.create}}
               <span class="secondary--text caption">{{ user.create | moment }}</span>
             </v-list-action>
           </v-list-tile>
-          <v-divider :key="user.userId + 'div'"/>
+          <!--一番下のリスト以外ではdividerを表示させる-->
+          <v-divider
+            v-if="userList.length !== index + 1"
+            :key="user.userId + 'div'"/>
         </template>
       </v-list>
     </v-card>
     <v-layout>
       <v-spacer/>
       <v-btn
-        :to="{ path: '/record/result', query: { resultId: resultId}}"
+        :to="'./' + resultId + '/update'"
         class="accent"
         dark>
         <v-icon>add</v-icon>

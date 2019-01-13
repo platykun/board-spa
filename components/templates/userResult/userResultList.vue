@@ -2,7 +2,6 @@
   <div>
     <v-dialog
       v-model="dialog"
-      fullscreen
     >
       <div slot="activator">
         <v-btn

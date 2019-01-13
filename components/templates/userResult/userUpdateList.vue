@@ -2,7 +2,6 @@
   <div>
     <v-dialog
       v-model="dialog"
-      fullscreen
     >
       <div slot="activator">
         <v-btn
@@ -127,9 +126,9 @@
 
       deleteItem(item) {
         const index = this.users.indexOf(item);
-        const userResultid = this.users[index].id;
+        const userId = this.users[index].userId;
         confirm('Are you sure you want to delete this item?') && this.users.splice(index, 1);
-        UserResult.deleteResult(userResultid);
+        UserResult.deleteResult(this.resultId, userId);
         this.$emit('input', this.users);
       },
 
@@ -142,7 +141,7 @@
       // ユーザ情報を追加更新する
       addUserResult(editedItem, editedIndex) {
         if (editedIndex > -1) {
-          UserResult.updateResult(editedItem.id, this.resultId, editedItem.userId, editedItem.score, editedItem.comment);
+          UserResult.updateResult(this.resultId, editedItem.userId, editedItem.score, editedItem.comment);
           Object.assign(this.users[editedIndex], editedItem);
           this.close();
           this.$emit('input', this.users);

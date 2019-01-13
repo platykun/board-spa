@@ -10,15 +10,15 @@ export default class UserResult {
     return api.requestWithToken('put', url, params);
   }
 
-  static updateResult(userResultId, resultId, userId, score, comment) {
+  static updateResult(resultId, userId, score, comment) {
     const params = {
       userId, score, comment
     };
-    const url = '/user/result/' + resultId + '/users/' + userResultId;
+    const url = '/user/result/' + resultId + '/users/' + userId;
     return api.requestWithToken('put', url, params);
   }
 
-  static deleteResult(userResultId) {
+  static deleteResult(resultId, userResultId) {
     const url = '/user/result/' + resultId + '/users/' + userResultId;
     return api.requestWithToken('delete', url, null);
   }
