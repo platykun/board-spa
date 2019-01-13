@@ -16,22 +16,29 @@
     </div>
     <v-card>
       <v-card-title>
-        Select Place
-        <v-spacer/>
+        <v-layout column>
+          <v-flex xs-12>
+            <v-btn icon @click="close()">
+              <v-icon>close</v-icon>
+            </v-btn>
+            <h3>場所を選択してください 件数:{{placeCount()}}</h3>
+          </v-flex>
+          <v-flex xs-12>
+            <v-text-field
+              v-model="placeName"
+              label="場所名"/>
+          </v-flex>
+        </v-layout>
+      </v-card-title>
+      <v-card-text>
         <v-btn
+          v-if="placeCount() == 0"
           outline
           round
           class="accent accent--text"
           to="/register/place">
           見つからない場合
         </v-btn>
-      </v-card-title>
-      <v-divider/>
-      <v-text-field
-        v-model="placeName"
-        label="場所名"/>
-      <v-divider/>
-      <v-card-text>
         <v-list>
           <v-list-tile
             v-for="place in places"
@@ -76,7 +83,15 @@
       selectPlace(val) {
         this.dialog = false;
         this.$emit('input', val);
-      }
+      },
+      // 検索結果の場所の数をカウントする
+      placeCount() {
+        return this.places.length;
+      },
+      // モーダルを閉じる
+      close() {
+        this.dialog = false;
+      },
     }
   }
 </script>
