@@ -18,8 +18,7 @@
         <v-list-tile
           v-if="item.action"
           :key="item.title"
-          :to="item.action"
-          @click="item.action">
+          :to="item.action">
           <!--v-list__tile v-list__tile--link v-list__tile--avatar theme--light-->
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>

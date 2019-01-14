@@ -31,11 +31,6 @@
               <span class="primary--text caption">{{ user.comment }}</span>
 
             </v-list-tile-content>
-            <v-list-action>
-              <v-spacer/>
-              {{user.create}}
-              <span class="secondary--text caption">{{ user.create | moment }}</span>
-            </v-list-action>
           </v-list-tile>
           <!--一番下のリスト以外ではdividerを表示させる-->
           <v-divider
