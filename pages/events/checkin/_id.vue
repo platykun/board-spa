@@ -16,7 +16,7 @@
           <v-btn
             class="accent--text"
             flat
-            to="/record/checkin">
+            to="/events/checkin">
             <v-icon>arrow_back_ios</v-icon>
             戻る
           </v-btn>

@@ -22,7 +22,7 @@
       return {
         navBottoms: [
           {awesome: false, name: "Top", icon: "home", link: '/top'},
-          {awesome: false, name: "CheckIn", icon: "location_on", link: '/record/checkin'},
+          {awesome: false, name: "Event", icon: "location_on", link: '/events'},
           {awesome: false, name: "Record", icon: "note_add", link: '/record/result'},
           {awesome: true, name: "Tweet", icon: "twitter", link: '/share/tweet'},
         ],
