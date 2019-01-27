@@ -50,16 +50,29 @@
       </v-card>
 
       <h2 class="primary--text">結果一覧</h2>
-      TODO: ここに結果情報を表示させる
+      <RecordCard
+        v-for="result in resultList"
+        :key="result"
+        :id="result.id"
+        :parent-id="result.parentId"
+        :board-game="result.boardGameTitle"
+        :date="result.create"
+        disable-place
+        disable-name
+      />
     </v-flex>
   </div>
 </template>
 
 <script>
   import Event from '~/plugins/js/interface/Event.js';
+  import RecordCard from '~/components/organisms/cards/recordCard';
   import moment from 'moment';
 
   export default {
+    components: {
+      'RecordCard': RecordCard,
+    },
     name: 'Checkin',
     validate({params}) {
       return /^\d+$/.test(params.id)

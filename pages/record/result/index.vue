@@ -12,13 +12,17 @@
             v-model="boardGame"/>
         </p>
       </div>
-      <div>
+      <div v-if="showPlaceName()">
         <div class="secondary--text caption">場所名</div>
         <p class="primary--text body-2">
           <span>{{ place === null ? placeName : place.name }}</span>
           <PlaceSelectMordal
             v-model="place"/>
         </p>
+      </div>
+      <div v-if="showEventName()">
+        <div class="primary--text body-2">イベント参加中</div>
+        <p class="secondary--text caption">場所: {{event.placeName}}</p>
       </div>
       <div>
         <div class="secondary--text caption">結果詳細</div>
@@ -41,6 +45,7 @@
 
 <script>
   import Result from '~/plugins/js/interface/Result.js';
+  import Event from '~/plugins/js/interface/Event.js';
   import BoardGameSelectMordal from '~/components/organisms/selector/boardGameSelectMordal';
   import PlaceSelectMordal from '~/components/organisms/selector/placeSelectMordal';
   import UsersResultList from '~/components/templates/userResult/userResultList';
@@ -63,13 +68,23 @@
         boardGame: null,
         place: null,
         userResults: [],
+        joiningEvent: false,
+        event: null,
       };
     },
+    beforeCreate() {
+      Event.findJoiningEvent().then(
+        (response) => {
+          this.event = response.data.result;
+          this.joiningEvent = true;
+        }
+      );
+  },
+    // 参加中のイベントの存在有無　もしくはチェックイン中の場所の存在有無を確認
     asyncData({query, store}, callback) {
       // 場所情報について、store情報から取得してデフォルト表示させる.
       if (typeof (query.resultId) === "undefined") {
         callback(null, {
-          isNewCreate: true,
           resultId: -1,
           placeId: store.getters['userDetail/checkIn'].id,
           placeName: store.getters['userDetail/checkIn'].name,
@@ -78,19 +93,37 @@
       }
     },
     methods: {
+      showPlaceName() {
+        return !this.joiningEvent;
+      },
+      showEventName() {
+        return this.joiningEvent;
+      },
       result() {
         let sendBoardGameId = (this.boardGame === null) ? this.boardGameId : this.boardGame.id;
         let sendBoardGameTitle = (this.boardGame === null) ? this.boardGameTitle : this.boardGame.title;
-        let sendPlaceId = (this.place === null) ? this.placeId : this.place.id;
-        let sendPlaceName = (this.place === null) ? this.placeName : this.place.name;
-
-        Result.result(sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, this.userResults).then(
+        let sendPlaceId = this.getSubmitPlaceId();
+        let sendPlaceName = this.getSubmitPlaceName();
+        let sendEventId = (this.joiningEvent) ? this.event.id : null;
+        Result.result(sendBoardGameId, sendBoardGameTitle, sendPlaceId, sendPlaceName, sendEventId, this.userResults).then(
           (response) => {
             this.$router.push({path: '/top'});
           })
           .catch((error) => {
             this.msg = '登録に失敗しました.';
           });
+      },
+      // 登録用場所ID.イベントに参加中の場合、イベント情報から取得.
+      getSubmitPlaceId() {
+        if(this.joiningEvent)return this.event.placeId;
+
+        return (this.place === null) ? this.placeId : this.place.id;
+      },
+      // 登録用場所名.イベントに参加中の場合、イベント情報から取得.
+      getSubmitPlaceName() {
+        if(this.joiningEvent)return this.event.placeName;
+
+        return (this.place === null) ? this.placeName : this.place.name;
       },
     },
   };

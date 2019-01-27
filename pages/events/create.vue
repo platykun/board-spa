@@ -8,17 +8,15 @@
       <PlaceSelectModal v-model="place"/>
       <br>
       <span class="primary--text">開始日時</span>
-      <DateTimeSelectForm v-model="dateTimeFrom"/> {{dateTimeFrom}}
+      <DateTimeSelectForm v-model="dateTimeFrom"/>
       <span class="primary--text">終了日時</span>
-      <DateTimeSelectForm v-model="dateTimeTo"/> {{dateTimeTo}}
+      <DateTimeSelectForm v-model="dateTimeTo"/>
       <v-textarea
         name="コメント"
         label="コメント"
         :value="comment"
         v-model="comment"
       ></v-textarea>
-      {{comment}}
-
       <v-layout>
         <v-spacer/>
         <v-btn
@@ -57,7 +55,7 @@
     },
     methods: {
       registerEvent() {
-        Event.regist(this.place.id, this.dateTimeFrom, this.dateTimeTo, this.comment).then(
+        Event.regist(this.place.id, this.place.name, this.dateTimeFrom, this.dateTimeTo, this.comment).then(
           (response) => {
             this.$router.push({path: '/events'})
           }
