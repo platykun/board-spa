@@ -12,18 +12,7 @@
             v-model="boardGame"/>
         </p>
       </div>
-      <div v-if="showPlaceName()">
-        <div class="secondary--text caption">場所名</div>
-        <p class="primary--text body-2">
-          <span>{{ place === null ? placeName : place.name }}</span>
-          <PlaceSelectMordal
-            v-model="place"/>
-        </p>
-      </div>
-      <div v-if="showEventName()">
-        <div class="primary--text body-2">イベント参加中</div>
-        <p class="secondary--text caption">場所: {{event.placeName}}</p>
-      </div>
+      <PlaceOrEventSelect></PlaceOrEventSelect>
       <div>
         <div class="secondary--text caption">結果詳細</div>
         <UsersResultList
@@ -49,6 +38,7 @@
   import BoardGameSelectMordal from '~/components/organisms/selector/boardGameSelectMordal';
   import PlaceSelectMordal from '~/components/organisms/selector/placeSelectMordal';
   import UsersResultList from '~/components/templates/userResult/userResultList';
+  import PlaceOrEventSelect from '~/components/organisms/selector/placeOrEventSelect';
 
   export default {
     name: 'Result',
@@ -57,6 +47,7 @@
       'BoardGameSelectMordal': BoardGameSelectMordal,
       'PlaceSelectMordal': PlaceSelectMordal,
       'UsersResultList': UsersResultList,
+      'PlaceOrEventSelect': PlaceOrEventSelect,
     },
     data() {
       console.log(this.$store.state);
@@ -73,12 +64,12 @@
       };
     },
     beforeCreate() {
-      Event.findJoiningEvent().then(
-        (response) => {
-          this.event = response.data.result;
-          this.joiningEvent = true;
-        }
-      );
+      // Event.findJoiningEvent().then(
+      //   (response) => {
+      //     this.event = response.data.result;
+      //     this.joiningEvent = true;
+      //   }
+      // );
   },
     // 参加中のイベントの存在有無　もしくはチェックイン中の場所の存在有無を確認
     asyncData({query, store}, callback) {

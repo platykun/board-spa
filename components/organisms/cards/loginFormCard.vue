@@ -5,18 +5,16 @@
     <v-card-title primary-title>
       <div class="headline">Login</div>
     </v-card-title>
-    <v-card-content>
-      <div class="mx-2">
-        <UserIdForm
-          v-model="userId"
-          dark
-        />
-        <PasswordForm
-          v-model="password"
-          dark
-        />
-      </div>
-    </v-card-content>
+    <v-card-text>
+      <UserIdForm
+        v-model="userId"
+        dark
+      />
+      <PasswordForm
+        v-model="password"
+        dark
+      />
+    </v-card-text>
     <v-card-actions>
       <v-btn
         class="accent"

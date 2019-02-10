@@ -14,7 +14,14 @@ export default {
     } else if (method === 'post') {
       promise = axios.post(fullUrl, params);
     }
-    promise.catch(() => alert('エラーが発生しました'));
+    // promise.catch((error) => {
+    //   let statusCode = error.response.status;
+    //   if(statusCode === 401) {
+    //     alert('認可エラー');
+    //   }
+    //   alert('エラーが発生しました');
+    // });
+
     return promise;
   },
 
@@ -22,12 +29,14 @@ export default {
     const token = localStorage.token;
     const fullUrl = process.env.API_URL + url;
 
-    return axios({
+    let promise = axios({
       method,
       url: fullUrl,
       headers: { authorization: token },
       data: params,
     });
+
+    return promise;
   },
 
   get(url, params) {
