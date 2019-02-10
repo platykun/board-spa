@@ -47,7 +47,7 @@
         this.$emit('clicked');
       },
       iconClass() {
-        var iconClass = this.hueColor + '--text ' + 'text--' + this.chromaColor;
+        const iconClass = this.hueColor + '--text ' + 'text--' + this.chromaColor;
 
         return this.adjustSize ? iconClass + ' adjustFontSize' : iconClass;
       }

@@ -32,7 +32,7 @@
 
 <script>
   import Event from '~/plugins/js/interface/Event.js';
-  import EventCard from '~/components/organisms/cards/eventCard';
+  import EventCard from '~/components/molecules/cards/eventCard';
 
   export default {
     middleware: 'authenticated',

@@ -3,7 +3,7 @@
     :to="resultLink"
     class="ma-2"
   >
-    <v-card-title>
+    <v-card-text>
       <div>
         <h3 class="blue-grey--text text--darken-1">{{ placeName }}</h3>
       </div>
@@ -13,7 +13,7 @@
         <br>
         <span class="grey--text">終了:{{ dateTimeTo | moment }}</span>
       </div>
-    </v-card-title>
+    </v-card-text>
   </v-card>
 </template>
 

@@ -1,48 +1,56 @@
 <template>
-  <v-card
-    color="primary"
-    class="white--text">
-    <v-card-title primary-title>
-      <div class="headline">Login</div>
-    </v-card-title>
-    <v-card-text>
-      <UserIdForm
-        v-model="userId"
-        dark
-      />
-      <PasswordForm
-        v-model="password"
-        dark
-      />
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        class="accent"
-        dark
-        @click.stop.prevent="sendLogin">ログイン
-      </v-btn>
-      <v-spacer/>
-      <v-btn
-        flat
-        dark
-        :to="signUpPath">
-        アカウントが無い方はこちら
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+  <div>
+    <CommonAlert
+      :alertMessage="errorMsg"
+      alertType="error"
+    />
+    <DarkBackCard>
+      <div slot="title">
+        Login
+      </div>
+      <div slot="text">
+        <UserIdForm
+          v-model="userId"
+          dark
+        />
+        <PasswordForm
+          v-model="password"
+          dark
+        />
+      </div>
+      <v-layout slot="actions">
+          <PrimaryBtn v-on:clickStopPrevent="sendLogin">
+            ログイン
+          </PrimaryBtn>
+          <v-spacer/>
+          <SecondaryBtn
+            :to="signUpPath">
+            アカウントが無い方はこちら
+          </SecondaryBtn>
+      </v-layout>
+    </DarkBackCard>
+  </div>
 </template>
 
 <script>
   import Login from '~/plugins/js/interface/Login';
   import User from '~/plugins/js/interface/User';
+  import PrimaryBtn from '~/components/atoms/buttons/primaryButton';
+  import SecondaryBtn from '~/components/atoms/buttons/SecondaryButton';
+  import CommonAlert from '~/components/molecules/alert/commonAlert';
   import LoginUserStore from '~/plugins/js/store/LoginUserStore';
   import UserIdForm from '~/components/molecules/form/userIdForm';
   import PasswordForm from '~/components/molecules/form/passwordForm';
+  import DarkBackCard from '~/components/molecules/cards/darkBackCard';
 
   export default {
     components: {
+      'CommonAlert': CommonAlert,
       'UserIdForm': UserIdForm,
       'PasswordForm': PasswordForm,
+      'DarkBackCard': DarkBackCard,
+      'PrimaryBtn': PrimaryBtn,
+      'SecondaryBtn': SecondaryBtn,
     },
     props: {
       loginSuccessPath: {
@@ -56,6 +64,7 @@
     },
     data() {
       return {
+        errorMsg: null,
         userId: '',
         password: '',
       };
@@ -73,7 +82,8 @@
             this.$router.push({path: this.loginSuccessPath});
           })
           .catch((error) => {
-            this.$emit('fail', error);
+            console.log(error);
+            this.loginFail(error);
           });
       },
       // ログイン情報を取得する
@@ -89,11 +99,13 @@
               splitIconColor[1]
             );
           });
-      }
+      },
+      loginFail(error) {
+        this.errorMsg = 'ログインに失敗しました. reason:' + error.message;
+      },
     }
   }
 </script>
-
 
 <style>
 </style>

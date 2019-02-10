@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import PlaceSelectModal from '~/components/organisms/selector/placeSelectMordal';
+  import PlaceSelectModal from '~/components/organisms/selector/placeSelectModal';
   import DateTimeSelectForm from '~/components/molecules/form/dateTimeSelectForm';
   import Event from '~/plugins/js/interface/Event.js';
 

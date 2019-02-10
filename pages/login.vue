@@ -5,39 +5,22 @@
       xs12
       sm6
       offset-sm3>
-      <CommonAlert
-        :alertMessage="errorMsg"
-        alertType="error"
-      />
-      <LoginFormCard
+      <LoginForm
         loginSuccessPath="/top"
         signUpPath="/signup"
-        v-on:fail="loginFail"
       />
     </v-flex>
   </div>
 </template>
 
 <script>
-  import CommonAlert from '~/components/molecules/alert/commonAlert';
-  import LoginFormCard from '~/components/organisms/cards/loginFormCard';
+  import LoginForm from '~/components/organisms/form/loginForm';
 
   export default {
     layout: 'home',
     middleware: 'notAuthenticated',
     components: {
-      'CommonAlert': CommonAlert,
-      'LoginFormCard': LoginFormCard,
-    },
-    data() {
-      return {
-        errorMsg: null,
-      };
-    },
-    methods: {
-      loginFail(error) {
-        this.errorMsg = 'ログインに失敗しました. reason:' + error.message;
-      },
+      'LoginForm': LoginForm,
     },
   };
 </script>

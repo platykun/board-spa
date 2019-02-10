@@ -8,7 +8,7 @@
         <div class="secondary--text caption">ボードゲーム名</div>
         <p class="primary--text body-2">
           <span> {{ boardGame === null ? boardGameTitle : boardGame.title }} </span>
-          <BoardGameSelectMordal
+          <BoardGameSelectModal
             v-model="boardGame"/>
         </p>
       </div>
@@ -34,9 +34,8 @@
 
 <script>
   import Result from '~/plugins/js/interface/Result.js';
-  import Event from '~/plugins/js/interface/Event.js';
-  import BoardGameSelectMordal from '~/components/organisms/selector/boardGameSelectMordal';
-  import PlaceSelectMordal from '~/components/organisms/selector/placeSelectMordal';
+  import BoardGameSelectModal from '~/components/organisms/selector/boardGameSelectModal';
+  import PlaceSelectModal from '~/components/organisms/selector/placeSelectModal';
   import UsersResultList from '~/components/templates/userResult/userResultList';
   import PlaceOrEventSelect from '~/components/organisms/selector/placeOrEventSelect';
 
@@ -44,8 +43,8 @@
     name: 'Result',
     middleware: 'authenticated',
     components: {
-      'BoardGameSelectMordal': BoardGameSelectMordal,
-      'PlaceSelectMordal': PlaceSelectMordal,
+      'BoardGameSelectModal': BoardGameSelectModal,
+      'PlaceSelectModal': PlaceSelectModal,
       'UsersResultList': UsersResultList,
       'PlaceOrEventSelect': PlaceOrEventSelect,
     },

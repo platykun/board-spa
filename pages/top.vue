@@ -68,7 +68,7 @@
 
 <script>
   import {mapGetters} from 'vuex';
-  import recordCard from '~/components/organisms/cards/recordCard';
+  import recordCard from '~/components/molecules/cards/recordCard';
 
   export default {
     components: {

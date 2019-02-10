@@ -1,27 +1,19 @@
 <template>
   <div>
-    <v-tabs
-      v-model="active_tab"
-      color="blue-grey lighten-1"
-      dark
-      slider-color="accent"
-    >
-      <v-tab
-        v-for="(tab, index) in tabs"
-        :key="tab + 'v-tab' + index"
-        ripple
-        :to="tab.to"
-      >
-        <v-icon class="hidden-xs-only">{{ tab.icon }}</v-icon>
-        {{ tab.title }}
-      </v-tab>
-    </v-tabs>
+    <SecondaryTab
+      :tabs="tabs"
+    ></SecondaryTab>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+  import SecondaryTab from '~/components/organisms/tabs/secondaryTab';
+
   export default {
+    components: {
+      'SecondaryTab': SecondaryTab,
+    },
     middleware: 'authenticated',
     data() {
       return {

@@ -4,61 +4,11 @@
       xs12
       sm6
       offset-sm3>
-      <h2 class="primary--text">イベント詳細</h2>
-      <v-card>
-        <v-card-title primary-title>
-          <div>
-            <div class="secondary--text caption">場所名</div>
-            <p class="primary--text title">{{ eventDetail.placeName }}</p>
-            <div class="secondary--text caption">開始日時</div>
-            <p class="primary--text title">{{ eventDetail.date_time_from | moment }}</p>
-            <div class="secondary--text caption">終了日時日時</div>
-            <p class="primary--text title">{{ eventDetail.date_time_to | moment }}</p>
-          </div>
-        </v-card-title>
-      </v-card>
-      <v-layout>
-        <v-spacer/>
-        <v-btn
-          class="accent mt-2"
-          dark
-          @click="joinEvent"
-        >
-          このイベントに参加
-        </v-btn>
-      </v-layout>
-      <h2 class="primary--text">参加者一覧</h2>
-      <v-card>
-        <v-list three-line>
-          <template v-for="(user, index) in joinUserList">
-            <v-list-tile
-              :key="user.userId"
-            >
-              <v-list-tile-content>
-                <div class="secondary--text body-1">
-                  name:
-                  <span class="primary--text title">{{ user.name }}</span>
-                </div>
-              </v-list-tile-content>
-            </v-list-tile>
-            <!--一番下のリスト以外ではdividerを表示させる-->
-            <v-divider
-              v-if="joinUserList.length !== index + 1"
-              :key="user.userId + 'div'"/>
-          </template>
-        </v-list>
-      </v-card>
-
-      <h2 class="primary--text">結果一覧</h2>
-      <RecordCard
-        v-for="result in resultList"
-        :key="result"
-        :id="result.id"
-        :parent-id="result.parentId"
-        :board-game="result.boardGameTitle"
-        :date="result.create"
-        disable-place
-        disable-name
+      <EventDetail
+        :eventDetail="eventDetail"
+        :joinUserList="joinUserList"
+        :resultList="resultList"
+        v-on:joinEvent="joinEvent()"
       />
     </v-flex>
   </div>
@@ -66,26 +16,25 @@
 
 <script>
   import Event from '~/plugins/js/interface/Event.js';
-  import RecordCard from '~/components/organisms/cards/recordCard';
-  import moment from 'moment';
+  import RecordCard from '~/components/molecules/cards/recordCard';
+  import EventDetail from '~/components/organisms/detail/eventDetail';
 
   export default {
+    middleware: 'authenticated',
     components: {
       'RecordCard': RecordCard,
+      'EventDetail': EventDetail,
     },
     name: 'Checkin',
     validate({params}) {
       return /^\d+$/.test(params.id)
     },
-    filters: {
-      moment: function (date) {
-        console.log(date);
-        return moment(date).format('YYYY-MM-DD HH:mm');
-      },
-    },
-    middleware: 'authenticated',
     data() {
       return {
+        event: null,
+        eventDetail: null,
+        joinUserList: null,
+        resultList: null,
       };
     },
     asyncData({app}, callback) {

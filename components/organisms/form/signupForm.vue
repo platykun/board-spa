@@ -1,49 +1,56 @@
 <template>
-  <v-card
-    color="primary"
-    class="white--text">
-    <v-card-title primary-title>
-      <div class="headline">新規ユーザ作成</div>
-    </v-card-title>
-    <v-card-text>
-      <UserIdForm
-        v-model="userId"
-        dark
-      />
-      <PasswordForm
-        v-model="password"
-        dark
-      />
-    </v-card-text>
-    <v-card-actions>
-      <v-btn
-        class="accent"
-        dark
-        @click.stop.prevent="createUser">作成
-      </v-btn>
-      <v-spacer/>
-      <v-btn
-        flat
-        dark
-        :to="loginPath">
-        ログインはこちら
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+  <div>
+    <CommonAlert
+      :alertMessage="errorMsg"
+      alertType="error"
+    />
+    <DarkBackCard>
+      <div slot="title">
+        新規ユーザ作成
+      </div>
+      <div slot="text">
+        <UserIdForm
+          v-model="userId"
+          dark
+        />
+        <PasswordForm
+          v-model="password"
+          dark
+        />
+      </div>
+      <v-layout slot="actions">
+        <PrimaryBtn v-on:clickStopPrevent="createUser">
+          作成
+        </PrimaryBtn>
+        <v-spacer/>
+        <SecondaryBtn :to="loginPath">
+          ログインはこちら
+        </SecondaryBtn>
+      </v-layout>
+    </DarkBackCard>
+  </div>
 </template>
 
 <script>
-  import Signup from '~/plugins/js/interface/Signup';
+  import SignUp from '~/plugins/js/interface/Signup';
   import User from '~/plugins/js/interface/User';
   import Login from '~/plugins/js/interface/Login';
+  import PrimaryBtn from '~/components/atoms/buttons/primaryButton';
+  import SecondaryBtn from '~/components/atoms/buttons/SecondaryButton';
+  import CommonAlert from '~/components/molecules/alert/commonAlert';
   import LoginUserStore from '~/plugins/js/store/LoginUserStore';
   import UserIdForm from '~/components/molecules/form/userIdForm';
   import PasswordForm from '~/components/molecules/form/passwordForm';
+  import DarkBackCard from '~/components/molecules/cards/darkBackCard';
 
   export default {
     components: {
+      'CommonAlert': CommonAlert,
       'UserIdForm': UserIdForm,
       'PasswordForm': PasswordForm,
+      'DarkBackCard': DarkBackCard,
+      'PrimaryBtn': PrimaryBtn,
+      'SecondaryBtn': SecondaryBtn,
     },
     props: {
       signUpSuccessPath: {
@@ -57,6 +64,7 @@
     },
     data() {
       return {
+        errorMsg: null,
         userId: '',
         password: '',
       };
@@ -65,13 +73,13 @@
       userId(val) {
         if (val === '') return;
 
-        Signup.isAvailableUser(val).then(
+        SignUp.isAvailableUser(val).then(
           (response) => {
             const result = response.data.result;
             if (result === false) {
-              this.$emit('validateFail', '記載されたユーザIDはすでに使われています.');
+              this.validateFail('記載されたユーザIDはすでに使われています.');
             } else {
-              this.$emit('validateFail', null);
+              this.validateFail(null);
             }
           }
         )
@@ -79,7 +87,7 @@
     },
     methods: {
       createUser() {
-        Signup.signup(this.userId, this.userId, this.password).then(
+        SignUp.signup(this.userId, this.userId, this.password).then(
           (response) => {
             this.setLoginUser();
             Login.login(this.userId, this.password).then(
@@ -90,11 +98,11 @@
                   response.data.authList,);
                 this.$router.push({path: this.signUpSuccessPath});
               }).catch((error) => {
-              this.$emit('loginFail', error.message);
+              this.loginFail(error);
             });
           })
           .catch((error) => {
-            this.$emit('createFail', error.message);
+            this.createFail(error);
           });
       },
 
@@ -111,11 +119,19 @@
               splitIconColor[1]
             );
           });
+      },
+      loginFail(error) {
+        this.errorMsg = 'ログインに失敗しました. reason:' + error.message;
+      },
+      createFail(error) {
+        this.errorMsg = 'ユーザ作成に失敗しました. reason:' + error.message;
+      },
+      validateFail(reason) {
+        this.errorMsg = reason;
       }
     }
   }
 </script>
-
 
 <style>
 </style>

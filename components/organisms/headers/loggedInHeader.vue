@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import LoginUserAvatar from '~/components/organisms/icon/loginUserAvatar';
+  import LoginUserAvatar from '~/components/molecules/icon/loginUserAvatar';
 
   export default {
     components: {

@@ -54,7 +54,7 @@
 
 <script>
   import HistoryResult from '~/plugins/js/interface/history/HistoryResult.js';
-  import recordCard from '~/components/organisms/cards/recordCard';
+  import recordCard from '~/components/molecules/cards/recordCard';
   import moment from 'moment';
 
   export default {

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import TweetButton from '~/components/organisms/buttons/tweetButton';
+  import TweetButton from '~/components/molecules/buttons/tweetButton';
   import Detail from '~/plugins/js/interface/Detail.js';
 
   export default {

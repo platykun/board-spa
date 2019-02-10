@@ -19,7 +19,7 @@ Eventは事前に登録済みであることが前提。
 </template>
 
 <script>
-  import PlaceSelectModal from '~/components/organisms/selector/placeSelectMordal';
+  import PlaceSelectModal from '~/components/organisms/selector/placeSelectModal';
   import Event from '~/plugins/js/interface/Event.js';
   export default {
     components: {

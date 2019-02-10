@@ -3,7 +3,7 @@
     :to="resultLink"
     class="ma-2"
   >
-    <v-card-title>
+    <v-card-text>
       <div>
         <h3 class="blue-grey--text text--darken-1">{{ boardGame }}</h3>
       </div>
@@ -19,7 +19,7 @@
           v-if="!disablePlace"
           class="grey--text">{{ place }}</h4>
       </div>
-    </v-card-title>
+    </v-card-text>
   </v-card>
 </template>
 
