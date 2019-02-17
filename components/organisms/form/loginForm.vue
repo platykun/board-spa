@@ -36,7 +36,7 @@
   import Login from '~/plugins/js/interface/Login';
   import User from '~/plugins/js/interface/User';
   import PrimaryBtn from '~/components/atoms/buttons/primaryButton';
-  import SecondaryBtn from '~/components/atoms/buttons/SecondaryButton';
+  import SecondaryBtn from '~/components/atoms/buttons/secondaryButton';
   import CommonAlert from '~/components/molecules/alert/commonAlert';
   import LoginUserStore from '~/plugins/js/store/LoginUserStore';
   import UserIdForm from '~/components/molecules/form/userIdForm';

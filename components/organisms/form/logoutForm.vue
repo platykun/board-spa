@@ -22,7 +22,7 @@
 
 <script>
   import PrimaryBtn from '~/components/atoms/buttons/primaryButton';
-  import SecondaryBtn from '~/components/atoms/buttons/SecondaryButton';
+  import SecondaryBtn from '~/components/atoms/buttons/secondaryButton';
   import CommonAlert from '~/components/molecules/alert/commonAlert';
   import DarkBackCard from '~/components/molecules/cards/darkBackCard';
 
