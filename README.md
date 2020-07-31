@@ -1,6 +1,6 @@
 # board-spa
 
-> My super-duper Nuxt.js project
+遊んだボードゲームを管理するwebアプリです。
 
 ## Build Setup
 
